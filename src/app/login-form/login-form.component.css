@@ -13,7 +13,33 @@
 .forgotpassword {
   text-align: center;
 }
-
+input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+button {
+  width: 100%;
+  border: none;
+  display: block;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-size: 32px;
+  line-height: 1.5em;
+  justify-content: center;
+  background-color: #568200;
+  color: white;
+}
 
 #passwordError {
   font-family: 'Fidelity Sans', Arial, sans-serif;
