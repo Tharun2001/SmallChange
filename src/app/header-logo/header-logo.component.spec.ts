@@ -8,9 +8,8 @@ describe('HeaderLogoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderLogoComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderLogoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,11 @@ describe('HeaderLogoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain header element', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    const header = compiled.querySelector('header');
+    expect(header).toBeTruthy();
   });
 });

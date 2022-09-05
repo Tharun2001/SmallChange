@@ -8,9 +8,8 @@ describe('FooterBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FooterBarComponent ]
-    })
-    .compileComponents();
+      declarations: [FooterBarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,11 @@ describe('FooterBarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain footer element', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    const footer = compiled.querySelector('footer');
+    expect(footer).toBeTruthy();
   });
 });

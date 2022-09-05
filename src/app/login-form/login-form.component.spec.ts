@@ -11,12 +11,12 @@ describe('LoginFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginFormComponent ]
+      declarations: [LoginFormComponent],
     })
-    .overrideComponent(LoginFormComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .overrideComponent(LoginFormComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default },
+      })
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -36,7 +36,6 @@ describe('LoginFormComponent', () => {
     fixture.detectChanges();
     const userError = fixture.debugElement.query(By.css('div#usernameError'));
     expect(userError.styles['display']).toBe('block');
-
   });
 
   it('valid username', () => {
@@ -46,7 +45,6 @@ describe('LoginFormComponent', () => {
     fixture.detectChanges();
     const userError = fixture.debugElement.query(By.css('div#usernameError'));
     expect(userError.styles['display']).toBe('none');
-
   });
 
   it('invalid password', () => {
@@ -58,7 +56,6 @@ describe('LoginFormComponent', () => {
     const passError = fixture.debugElement.query(By.css('div#passwordError'));
     console.log(passError.styles['display']);
     expect(passError.styles['display']).toBe('block');
-
   });
 
   it('valid password', () => {
@@ -68,7 +65,46 @@ describe('LoginFormComponent', () => {
     fixture.detectChanges();
     const passError = fixture.debugElement.query(By.css('div#passwordError'));
     expect(passError.styles['display']).toBe('none');
-
   });
 
+  it('invalid username length', () => {
+    component.username =
+      'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+    const user = fixture.debugElement.query(By.css('input#username'));
+    user.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    const userError = fixture.debugElement.query(By.css('div#usernameError'));
+    expect(userError.styles['display']).toBe('block');
+  });
+
+  it('invalid username characters', () => {
+    component.username = 'a##a';
+    const user = fixture.debugElement.query(By.css('input#username'));
+    user.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    const userError = fixture.debugElement.query(By.css('div#usernameError'));
+    expect(userError.styles['display']).toBe('block');
+  });
+
+  it('invalid password length', () => {
+    component.password = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+    const password = fixture.debugElement.query(By.css('input#password'));
+    password.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    const passError = fixture.debugElement.query(By.css('div#passwordError'));
+    console.log(passError.styles['display']);
+    expect(passError.styles['display']).toBe('block');
+  });
+
+  it('invalid password characters', () => {
+    component.password = 'a#$a';
+    const password = fixture.debugElement.query(By.css('input#password'));
+    password.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    const passError = fixture.debugElement.query(By.css('div#passwordError'));
+    console.log(passError.styles['display']);
+    expect(passError.styles['display']).toBe('block');
+  });
 });
