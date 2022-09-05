@@ -27,7 +27,7 @@ input {
 label {
   display: block;
   margin-bottom: 0.25rem;
-  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-family: "Fidelity Sans", Arial, sans-serif;
   font-weight: bold;
 }
 button {
@@ -36,28 +36,29 @@ button {
   display: block;
   box-sizing: border-box;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-family: "Fidelity Sans", Arial, sans-serif;
   font-size: 32px;
   line-height: 1.5em;
   justify-content: center;
   background-color: #568200;
   color: white;
+  cursor: pointer;
 }
 p {
   margin: 1rem;
   padding-bottom: 1rem;
   box-sizing: content-box;
-  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-family: "Fidelity Sans", Arial, sans-serif;
   font-size: 18px;
   color: #000;
   text-align: center;
-  font-weight:normal;
+  font-weight: normal;
 }
 header {
   padding-top: 1rem;
   margin: 0;
   box-sizing: content-box;
-  font-family: 'Fidelity Sans',Arial, sans-serif ;
+  font-family: "Fidelity Sans", Arial, sans-serif;
   font-size: 32px;
   line-height: 1.5em;
   color: #000;
@@ -66,8 +67,8 @@ header {
 
 a {
   justify-content: center;
-  font-family: 'Fidelity Sans', Arial, sans-serif;
-  color: #024A7A;
+  font-family: "Fidelity Sans", Arial, sans-serif;
+  color: #024a7a;
 }
 a:visited {
   color: purple;
@@ -78,7 +79,7 @@ a:focus {
 }
 
 #passwordError {
-  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-family: "Fidelity Sans", Arial, sans-serif;
   font-size: 0.8em;
   font-weight: bold;
   text-align: center;
@@ -87,7 +88,7 @@ a:focus {
 }
 
 #usernameError {
-  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-family: "Fidelity Sans", Arial, sans-serif;
   font-size: 0.8em;
   font-weight: bold;
   text-align: center;
