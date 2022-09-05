@@ -2,7 +2,10 @@
   max-width: 18rem;
   border: solid 1px #ccc;
   padding: 2rem 3rem 2rem 3rem;
-  margin: 0rem auto 0rem auto;
+  margin: 0rem auto 3rem auto;
+}
+.forgotPassword {
+  text-align: center;
 }
 .loginform {
   margin-bottom: 1.5rem;
@@ -39,6 +42,39 @@ button {
   justify-content: center;
   background-color: #568200;
   color: white;
+}
+p {
+  margin: 1rem;
+  padding-bottom: 1rem;
+  box-sizing: content-box;
+  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-size: 18px;
+  color: #000;
+  text-align: center;
+  font-weight:normal;
+}
+header {
+  padding-top: 1rem;
+  margin: 0;
+  box-sizing: content-box;
+  font-family: 'Fidelity Sans',Arial, sans-serif ;
+  font-size: 32px;
+  line-height: 1.5em;
+  color: #000;
+  text-align: center;
+}
+
+a {
+  justify-content: center;
+  font-family: 'Fidelity Sans', Arial, sans-serif;
+  color: #024A7A;
+}
+a:visited {
+  color: purple;
+}
+a:focus {
+  color: #ccc;
+  outline: dotted 1px;
 }
 
 #passwordError {
