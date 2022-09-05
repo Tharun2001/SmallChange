@@ -5,14 +5,16 @@ import { HeaderLogoComponent } from './header-logo/header-logo.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
-
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderLogoComponent,
     FooterBarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    NavbarComponent,
+    HeaderLogoComponent
   ],
   imports: [
     BrowserModule,
