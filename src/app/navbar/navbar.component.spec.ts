@@ -27,4 +27,10 @@ describe('NavbarComponent', () => {
   it('should contain 4 navigation items', () => {
     expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(4);
   })
+
+  it(('should contain nav element'), ()=> {
+    const compiled = fixture.debugElement.nativeElement;
+    const navbar = compiled.querySelector("nav");
+    expect(navbar).toBeTruthy();
+  });
 });

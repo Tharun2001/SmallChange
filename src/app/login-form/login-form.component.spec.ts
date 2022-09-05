@@ -29,17 +29,46 @@ describe('LoginFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show error div when username is invalid', () => {
-    var username = fixture.debugElement.query(By.css('username')).nativeElement;
-    username.value = 'asdasd';
-    username.dispatchEvent(new Event('change'));
-
+  it('invalid username', () => {
+    component.username = 'a';
+    const user = fixture.debugElement.query(By.css('input#username'));
+    user.nativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    console.log(fixture.detectChanges())
+    const userError = fixture.debugElement.query(By.css('div#usernameError'));
+    expect(userError.styles['display']).toBe('block');
 
-    var divError = fixture.debugElement.query(By.css('usernameError'));
-
-
-    expect(divError.styles['display']).toBe('block');
   });
+
+  it('valid username', () => {
+    component.username = 'aaaaaa';
+    const user = fixture.debugElement.query(By.css('input#username'));
+    user.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    const userError = fixture.debugElement.query(By.css('div#usernameError'));
+    expect(userError.styles['display']).toBe('none');
+
+  });
+
+  it('invalid password', () => {
+    component.password = 'a';
+    const password = fixture.debugElement.query(By.css('input#password'));
+    password.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    const passError = fixture.debugElement.query(By.css('div#passwordError'));
+    console.log(passError.styles['display']);
+    expect(passError.styles['display']).toBe('block');
+
+  });
+
+  it('valid password', () => {
+    component.password = 'aaaaaaaaa';
+    const password = fixture.debugElement.query(By.css('input#password'));
+    password.nativeElement.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    const passError = fixture.debugElement.query(By.css('div#passwordError'));
+    expect(passError.styles['display']).toBe('none');
+
+  });
+
 });
