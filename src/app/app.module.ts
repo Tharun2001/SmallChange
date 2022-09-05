@@ -6,6 +6,8 @@ import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     FooterBarComponent,
     LoginFormComponent,
     NavbarComponent,
-    HeaderLogoComponent
+    HeaderLogoComponent,
+    LoginPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
