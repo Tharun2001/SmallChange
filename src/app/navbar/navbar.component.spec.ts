@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -22,4 +23,8 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain 4 navigation items', () => {
+    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(4);
+  })
 });
