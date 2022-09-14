@@ -10,7 +10,7 @@ import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfoli
 
 const routes = [
   { path: '', component: LoginPageComponent},
-  { path: 'signup', component: SignupPageComponent}
+  { path: 'signup', component: SignupPageComponent},
   { path: 'portfolio', component: ViewPortfolioComponent}
 ]
 

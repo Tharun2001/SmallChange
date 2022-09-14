@@ -29,7 +29,9 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
     StockPortfolioComponent,
     MfPortfolioComponent,
     BondPortfolioComponent,
-    ViewPortfolioComponent
+    ViewPortfolioComponent,
+    SignupFormComponent,
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,
