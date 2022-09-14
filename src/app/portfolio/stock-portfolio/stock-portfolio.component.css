@@ -1,0 +1,49 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 0.1px solid #dddddd83;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: hsla(0, 0%, 95%, 0.856);
+  }
+
+  .stock-table{
+      width:99.5%;
+      margin-left: 0.25%;
+      margin-top: 10px;
+  }
+
+  .overview{
+      display: flex;
+      width: 90%;
+      margin-left: 11%;
+      margin-bottom: 25px;
+      margin-top: 30px;
+  }
+
+  .child{
+      flex:1;
+  }
+ 
+  h2,h4,h3{
+      margin: 0;
+  }
+
+  .red{
+    color:rgba(160, 7, 7, 0.877);
+  }
+
+  .green{
+    color: rgb(7, 124, 42);
+  }
+
+  .bolder{
+    font-weight: bolder;
+  }

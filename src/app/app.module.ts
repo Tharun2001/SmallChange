@@ -9,6 +9,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './app-routing.module';
+import { StockPortfolioComponent } from './portfolio/stock-portfolio/stock-portfolio.component';
+import { MfPortfolioComponent } from './portfolio/mf-portfolio/mf-portfolio.component';
+import { BondPortfolioComponent } from './portfolio/bond-portfolio/bond-portfolio.component';
+import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfolio.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     HeaderLogoComponent,
     LoginPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    StockPortfolioComponent,
+    MfPortfolioComponent,
+    BondPortfolioComponent,
+    ViewPortfolioComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
