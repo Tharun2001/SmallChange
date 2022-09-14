@@ -6,12 +6,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfolio.component';
+import { TradeHistoryComponent } from './trade-history/trade-history.component';
 
 
 const routes = [
   { path: '', component: LoginPageComponent},
   { path: 'signup', component: SignupPageComponent},
-  { path: 'portfolio', component: ViewPortfolioComponent}
+  { path: 'portfolio', component: ViewPortfolioComponent},
+  { path: 'activity', component: TradeHistoryComponent},
 ]
 
 @NgModule({

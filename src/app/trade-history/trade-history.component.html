@@ -1,0 +1,70 @@
+<app-header-logo></app-header-logo>
+<app-navbar></app-navbar>
+<nav>
+    <button [ngClass]="{'active': filter == ''}" (click)="getTradeHistory('')">All trades</button>
+    <button [ngClass]="{'active': filter == 'asset_class'}" (click)="getTradeHistory('asset_class')">By assest class</button>
+    <button [ngClass]="{'active': filter == 'side'}" (click)="getTradeHistory('side')">By side</button>
+    <button [ngClass]="{'active': filter == 'date'}" (click)="getTradeHistory('date')">By Date</button>
+    <button [ngClass]="{'active': filter == 'amount'}" (click)="getTradeHistory('amount')">By specific amount</button>
+
+</nav>
+<div class="options">
+    <section class="date-options" *ngIf="filter == 'date'">
+        <form #dateForm="ngForm" (ngSubmit)="dateSubmit(dateForm)">
+            <label for="from">From:</label>  <input name="stDate" type="date" [(ngModel)]="stDate">
+            <label for="and">to:</label><input name="endDate" type="date" [(ngModel)]="endDate">
+            <button type="submit">Go</button>
+        </form>
+        <div class="error" *ngIf="error == 'empty-date'">*Invalid - date(s) are empty.</div>
+        <div class="error" *ngIf="error == 'invalid-date'">*Invalid - start date should be greater than end date.</div>
+    </section>
+
+    <section class="amount-options" *ngIf="filter == 'amount'">
+        <form #amountForm="ngForm" (ngSubmit)="amountSubmit(amountForm)">
+            <label for="from">From:</label> <input name="stAmount" type="text" [(ngModel)]="stAmount">
+            <label for="and">and:</label> <input name="endAmount" type="text" [(ngModel)]="endAmount">
+            <button type="submit">Go</button>
+        </form>
+        <div class="error" *ngIf="error == 'empty-amount'">*Invalid - amount(s) are empty.</div>
+        <div class="error" *ngIf="error == 'invalid-amount'">*Invalid - start amount should be greater than end amount.</div>
+        <div class="error" *ngIf="error == 'invalid-amount-chars'">*Invalid - should contain valid a number.</div>
+    </section>
+
+    <section class="asset-options" *ngIf="filter == 'asset_class'">
+        <ul>
+            <li><label>Main Index</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Main index stocks')"></li>
+            <li><label>Small Cap</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Small cap company stocks')"></li>
+            <li><label>International</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('International market stocks')"></li>
+        </ul>
+    </section>
+
+    <section class="side-options" *ngIf="filter == 'side'">
+        <ul>
+            <li><label>Buy</label><input type="radio" name="side_option" (change)="onSideOptionSelection('buy')"></li>
+            <li><label>Sell</label><input type="radio" name="side_option" (change)="onSideOptionSelection('sell')"></li>
+        </ul>
+    </section>
+</div>
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Asset class</th>
+        <th>Side</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    <tr *ngFor="let trade of trades">
+        <td>{{trade.date}} {{trade.time}}</td>
+        <td>{{trade.name}}</td>
+        <td>{{trade.code}}</td>
+        <td>{{trade.asset_class}}</td>
+        <td [ngClass]="{'buy': trade.trade_type == 'buy', 'sell': trade.trade_type == 'sell'}">{{trade.trade_type}}</td>
+        <td>{{trade.price | currency:'USD':true}}</td>
+        <td>{{trade.quantity}}</td>
+    </tr>
+</table>
+
+<hr />
+<app-footer-bar></app-footer-bar>

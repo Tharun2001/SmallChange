@@ -15,6 +15,7 @@ import { BondPortfolioComponent } from './portfolio/bond-portfolio/bond-portfoli
 import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfolio.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { TradeHistoryComponent } from './trade-history/trade-history.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
     BondPortfolioComponent,
     ViewPortfolioComponent,
     SignupFormComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    TradeHistoryComponent
   ],
   imports: [
     BrowserModule,
