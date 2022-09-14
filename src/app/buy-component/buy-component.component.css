@@ -1,0 +1,17 @@
+.success {
+  color: #0fa50a;
+  text-decoration: none;
+}
+
+.failure {
+    color: #c91e07;
+    text-decoration: none;
+  }
+
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center
+  }

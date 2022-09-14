@@ -1,0 +1,88 @@
+<!-- <h1>Welcome!</h1>
+<h2>Funds Available: ${{ fundsAvailable }}</h2>
+<h3>Choose Asset Class:</h3>
+ -->
+
+<div class = "container">
+<label>Choose Asset Class</label>
+<br>
+<select name="Asset class" [(ngModel)]="selectedAsset">
+  <option value="Main Index">Main Index</option>
+  <option value="Small Cap Company">Small Cap Company</option>
+  <option value="International Market">International Market</option>
+  <option value="Government Bonds">Government Bonds</option>
+  <option value="Corporate Bonds">Corporate Bonds</option>
+</select>
+
+
+<select *ngIf= "selectedAsset === 'Main Index'" (change)="update($event)">
+  <option *ngFor="let main of mainIndex" [value] = "main.buy_price" >
+    {{ main.name }}
+  </option>
+</select>
+
+
+<select *ngIf= "selectedAsset === 'Small Cap Company'" (change)="update($event)">
+  <option *ngFor="let small of smallCap"  [value] = "small.buy_price">
+    {{ small.name }}
+  </option>
+</select>
+
+<select *ngIf= "selectedAsset === 'International Market'" (change)="update($event)">
+  <option *ngFor="let intern of international"  [value] = "intern.buy_price">
+    {{ intern.name }}
+  </option>
+</select>
+
+<select *ngIf= "selectedAsset === 'Government Bonds'" (change)="update($event)">
+  <option *ngFor="let govern of governmentBonds"  [value] = "govern.buy_price">
+    {{ govern.name }}
+  </option>
+</select>
+
+<select *ngIf= "selectedAsset === 'Corporate Bonds'" (change)="update($event)">
+  <option *ngFor="let corp of corporateBonds"  [value] = "corp.buy_price">
+    {{ corp.name }}
+  </option>
+</select>
+<p>Current Price: {{selectedstock}}</p>
+<form>
+  <label for="Quantity">Quantity</label><br>
+  <input type="quantity" id="qty" name="qty" [(ngModel)] = "quantity">
+  <br>
+</form>
+<br>
+<br>
+<label>Choose Account</label>
+<br>
+<select name="Account" [(ngModel)]="fundBalance">
+  <option value="24000" >Bank of America(x2434)</option>
+  <option value="14000" >JP Morgan Chase(x2115)</option>
+</select>
+
+<div>
+  <p> Remaining Funds: ${{fundBalance}} </p>
+</div>
+
+
+<br>
+<button (click) = "tradeValidation()" >
+Place Buy Order
+</button>
+
+<div *ngIf = "success == true">
+  <h2 class = "success"> Order Success!</h2>
+</div>
+
+
+<div *ngIf = "success === 'gonecase'">
+  <h2 class = "failure"> Order Failed, Insufficient balance!</h2>
+</div>
+
+
+
+<!-- <div *ngIf = "success">
+  <h2 class = "failure"> Order Failed, Insufficient balance!</h2>
+</div> -->
+
+
