@@ -39,6 +39,11 @@
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="!data.length">
+            <span id="no-stocks-message">
+                No stocks available
+            </span>
+          </div>
     </div>
     <div class="overview">
         <span class="child">

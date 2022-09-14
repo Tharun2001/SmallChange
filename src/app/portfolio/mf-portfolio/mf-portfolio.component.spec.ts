@@ -22,4 +22,9 @@ describe('MfPortfolioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should display table', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    const table = compiled.querySelector("table");
+    expect(table).toBeTruthy();
+  });
 });
