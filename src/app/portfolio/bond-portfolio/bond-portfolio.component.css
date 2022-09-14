@@ -1,7 +1,9 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 1em;
   }
   
   td, th {
@@ -41,9 +43,23 @@ table {
   }
   
   .green{
-    color: rgb(7, 124, 42);
+    color: #568200;
   }
   
   .bolder{
     font-weight: bolder;
+  }
+  .overview{
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+  }
+  .child{
+    flex: 1;
+    margin: 0 5% 0 0;
+    padding: 1.5em;
+    box-shadow: 4px 4px #b9b4b4;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
   }
