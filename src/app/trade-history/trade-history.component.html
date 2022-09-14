@@ -1,12 +1,12 @@
 <app-header-logo></app-header-logo>
 <app-navbar></app-navbar>
+<h1> Trade History</h1>
 <nav>
     <button [ngClass]="{'active': filter == ''}" (click)="getTradeHistory('')">All trades</button>
     <button [ngClass]="{'active': filter == 'asset_class'}" (click)="getTradeHistory('asset_class')">By assest class</button>
     <button [ngClass]="{'active': filter == 'side'}" (click)="getTradeHistory('side')">By side</button>
     <button [ngClass]="{'active': filter == 'date'}" (click)="getTradeHistory('date')">By Date</button>
     <button [ngClass]="{'active': filter == 'amount'}" (click)="getTradeHistory('amount')">By specific amount</button>
-
 </nav>
 <div class="options">
     <section class="date-options" *ngIf="filter == 'date'">

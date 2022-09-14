@@ -1,5 +1,11 @@
+h1{
+    font-family: "Fidelity Sans", Arial, sans-serif;
+    text-align: center;
+    font-weight: bolder;
+    margin: 10px;
+}
+
 nav{
-    margin-top: 30px;
     text-align: center;
 }
 
@@ -42,6 +48,10 @@ table td, th{
    padding: 10px 25px;
    border: 1px solid #ddd;
 }
+
+tr:nth-child(even) {
+    background-color: hsla(0, 0%, 95%, 0.856);
+    }
 
 td.buy{
     color: green;
