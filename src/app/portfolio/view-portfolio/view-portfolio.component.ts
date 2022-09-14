@@ -33,8 +33,4 @@ export class ViewPortfolioComponent implements OnInit {
       this.funds += bank_accounts[i].balance
     }
   }
-  ngOnChanges() {
-    this.eventTriggered?this.eventTriggered=false:this.eventTriggered=true;
-    this.ngOnInit();
-}
 }
