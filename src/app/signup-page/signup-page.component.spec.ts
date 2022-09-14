@@ -1,5 +1,7 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing'
 import { SignupPageComponent } from './signup-page.component';
 
 describe('SignupPageComponent', () => {
@@ -8,7 +10,11 @@ describe('SignupPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupPageComponent ]
+      declarations: [ SignupPageComponent ],
+      imports: [
+        ReactiveFormsModule, FormsModule, RouterTestingModule
+      ],
+      schemas : [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   });

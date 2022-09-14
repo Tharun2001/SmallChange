@@ -7,8 +7,8 @@
   <div class="container">
     <div class="signupform">
       <label for="email">Email</label>
-      <input type='email' id="email" formControlName="email">
-      <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="alert">
+      <input type='email' id="email" formControlName="email" placeholder="example@example.com">
+      <div id="emailError" *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="alert">
         <div *ngIf="signupForm.controls['email'].hasError('required') || signupForm.controls['email'].hasError('pattern')">
           Please enter a valid email.
         </div>
@@ -17,7 +17,7 @@
     <div class="signupform">
       <label for="firstName">First Name</label>
       <input type="text" id="firstName" formControlName="firstName">
-      <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)" class="alert">
+      <div id="firstNameError" *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)" class="alert">
         <div *ngIf="signupForm.controls['firstName'].hasError('required') || signupForm.controls['firstName'].hasError('minlength')">
           First name must be atleast 3 characters.
         </div>
@@ -26,7 +26,7 @@
     <div class="signupform">
       <label for="lastName">Last Name</label>
       <input type="text" id="lastName" formControlName="lastName">
-      <div *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)" class="alert">
+      <div id="lastNameError" *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)" class="alert">
         <div *ngIf="signupForm.controls['lastName'].hasError('required') || signupForm.controls['lastName'].hasError('minlength')">
           Last name must be atleast 3 characters.
         </div>
@@ -35,7 +35,7 @@
     <div class="signupform">
       <label for="password">Password</label>
       <input type="password" id="password" formControlName="password">
-      <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="alert">
+      <div id="passwordError" *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="alert">
         <div *ngIf="signupForm.controls['password'].hasError('required')
         || signupForm.controls['password'].hasError('minlength') || signupForm.controls['password'].hasError('maxlength')
         || signupForm.controls['password'].hasError('pattern')">
@@ -46,7 +46,7 @@
     <div class="signupform">
       <label for="cpassword">Confirm Password</label>
       <input type="password" id="cpassword" formControlName="cpassword">
-      <div *ngIf="signupForm.controls['cpassword'].invalid && (signupForm.controls['cpassword'].dirty || signupForm.controls['cpassword'].touched)" class="alert">
+      <div id="cpasswordError" *ngIf="signupForm.controls['cpassword'].invalid && (signupForm.controls['cpassword'].dirty || signupForm.controls['cpassword'].touched)" class="alert">
         <div *ngIf="signupForm.controls['cpassword'].hasError('required')
         || signupForm.controls['cpassword'].hasError('minlength') || signupForm.controls['cpassword'].hasError('maxlength')
         || signupForm.controls['cpassword'].hasError('pattern')">
@@ -62,8 +62,8 @@
     </div>
     <div class="signupform">
       <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" formControlName="phone">
-      <div *ngIf="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)" class="alert">
+      <input type="tel" id="phone" formControlName="phone" placeholder="123-456-7890">
+      <div id="phoneError" *ngIf="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)" class="alert">
         <div *ngIf="signupForm.controls['phone'].hasError('required') || signupForm.controls['phone'].hasError('pattern')">
           Enter a valid phone number.
         </div>
@@ -72,7 +72,7 @@
     <div class="signupform">
       <label for="risk">Risk</label>
       <input type="number" id="risk" formControlName="risk">
-      <div *ngIf="signupForm.controls['risk'].invalid && (signupForm.controls['risk'].dirty || signupForm.controls['risk'].touched)" class="alert">
+      <div id="riskError" *ngIf="signupForm.controls['risk'].invalid && (signupForm.controls['risk'].dirty || signupForm.controls['risk'].touched)" class="alert">
         <div *ngIf="signupForm.controls['risk'].hasError('required')
         || signupForm.controls['risk'].hasError('min') || signupForm.controls['risk'].hasError('max')">
           Risk must be between 1 and 5.

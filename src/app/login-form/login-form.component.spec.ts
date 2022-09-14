@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { LoginFormComponent } from './login-form.component';
@@ -12,6 +13,9 @@ describe('LoginFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginFormComponent],
+      imports: [
+        FormsModule
+      ]
     })
       .overrideComponent(LoginFormComponent, {
         set: { changeDetection: ChangeDetectionStrategy.Default },
