@@ -37,6 +37,10 @@ nav li {
     display: inline-block;
 }
 
+.logout {
+    float: right;
+}
+
 nav .icon {
     display: none;
     border-style: none;

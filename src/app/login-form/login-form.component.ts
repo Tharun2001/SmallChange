@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { UserServiceService } from '../services/user-service.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -10,7 +11,7 @@ export class LoginFormComponent implements OnInit {
   password: string = '';
   forbiddenChars = new RegExp('^[A-Za-z0-9_-]*$');
 
-  constructor() {}
+  constructor(private userService: UserServiceService, private router: Router) { }
 
   ngOnInit(): void {
     var usernameFeild = document
@@ -55,11 +56,13 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-    if (
-      document.getElementById('passwordError')?.style.display == 'none' &&
-      document.getElementById('usernameError')?.style.display == 'none'
-    ) {
-      console.log('Logged In');
-    }
-  }
+    this.userService.authenticateUser(this.username,
+      this.password).subscribe(data => {
+        if (data) {
+          let url = "/portfolio"
+          this.router.navigate([url]);
+          console.log("After route");
+        }
+      })
+}
 }

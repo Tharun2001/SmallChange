@@ -33,6 +33,15 @@
       </div>
     </div>
     <div class="signupform">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username">
+      <div id="usernameError" *ngIf="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['username'].hasError('required') || signupForm.controls['username'].hasError('minlength')">
+          Username must be atleast 3 characters.
+        </div>
+      </div>
+    </div>
+    <div class="signupform">
       <label for="password">Password</label>
       <input type="password" id="password" formControlName="password">
       <div id="passwordError" *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="alert">

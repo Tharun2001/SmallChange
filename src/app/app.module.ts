@@ -7,7 +7,6 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StockPortfolioComponent } from './portfolio/stock-portfolio/stock-portfolio.component';
 import { MfPortfolioComponent } from './portfolio/mf-portfolio/mf-portfolio.component';
@@ -16,6 +15,9 @@ import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfoli
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { TradeHistoryComponent } from './trade-history/trade-history.component';
+import {HttpClientModule} from "@angular/common/http";
+import { BuyComponentComponent } from './buy-component/buy-component.component';
+
 
 @NgModule({
   declarations: [
@@ -26,20 +28,21 @@ import { TradeHistoryComponent } from './trade-history/trade-history.component';
     NavbarComponent,
     HeaderLogoComponent,
     LoginPageComponent,
-    HomePageComponent,
     StockPortfolioComponent,
     MfPortfolioComponent,
     BondPortfolioComponent,
     ViewPortfolioComponent,
     SignupFormComponent,
     SignupPageComponent,
-    TradeHistoryComponent
+    TradeHistoryComponent,
+    BuyComponentComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
