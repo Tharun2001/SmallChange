@@ -4,10 +4,6 @@ import { ViewPortfolioComponent } from './view-portfolio/view-portfolio.componen
 import { BondPortfolioComponent } from './bond-portfolio/bond-portfolio.component';
 import { MfPortfolioComponent } from './mf-portfolio/mf-portfolio.component';
 import { StockPortfolioComponent } from './stock-portfolio/stock-portfolio.component';
-<<<<<<< HEAD
-import {MatTabsModule} from '@angular/material/tabs';
-=======
->>>>>>> sandhya
 
 @NgModule({
   declarations: [
@@ -18,10 +14,6 @@ import {MatTabsModule} from '@angular/material/tabs';
   ],
   imports: [
     CommonModule,
-<<<<<<< HEAD
-    MatTabsModule
-=======
->>>>>>> sandhya
   ]
 })
 export class PortfolioModule { }
