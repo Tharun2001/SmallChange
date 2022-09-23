@@ -1,0 +1,53 @@
+.table-area{
+    width: 95%;
+    margin-left: 2.5%;
+    border: grey 2px solid;
+    overflow: scroll;
+}
+
+.head{
+    margin-left: 2.5%;
+    font-weight: bolder;
+    margin-top: 2%;
+}
+
+.overview{
+    display: flex;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+@media only screen and (max-width: 700px) {
+  .overview{
+    flex-direction: column;
+  }
+}
+.child{
+  flex: 1;
+  margin: 0 5% 0 0;
+  padding: 1.5em;
+  box-shadow: 4px 4px #b9b4b4;
+}
+.child:last-child{
+    margin-right: 0;
+}
+h2,h4,h3,h1{
+    margin: 0;
+    text-align: center;
+}
+.red{
+  color:rgba(160, 7, 7, 0.877);
+}
+
+.green{
+  color: #568200;
+}
+
+.bolder{
+  font-weight: bolder;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}

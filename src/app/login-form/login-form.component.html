@@ -1,0 +1,36 @@
+<header>Login Page</header>
+<p>
+  Did you know that SmallChange&trade; has no investment fees on portfolios with balances under $5,000? After
+  that, only 0.25% fee applies monthly.
+</p>
+<div class="container">
+
+  <div class="loginform">
+    <label for="username">Username</label>
+    <input type="text" id="username" [(ngModel)]="username">
+  </div>
+  <div id="usernameError">
+    Invalid Username - Must contain between 3 and 18 letters, numbers, underscore or hyphens.
+  </div>
+
+  <div class="loginform">
+    <label for="password">Password</label>
+    <input type="password" id="password" [(ngModel)]="password">
+  </div>
+  <div id="passwordError">
+    Invalid Password - Must contain between 6 and 24 letters, numbers, underscore or hyphens.
+  </div>
+
+  <div class="loginform">
+    <button type="button" id="loginbutton" (click)="login()">Log In</button>
+  </div>
+
+  <div class="forgotPassword">
+    <a href="">Forgot your password?</a>
+  </div>
+
+  <div class="signup">
+    <a routerLink="signup">Don't have an account? Sign Up!</a>
+  </div>
+
+</div>

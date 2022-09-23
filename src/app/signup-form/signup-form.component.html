@@ -1,0 +1,102 @@
+<header>Sign Up Page</header>
+<p>
+  Did you know that SmallChange&trade; has no investment fees on portfolios with balances under $5,000? After
+  that, only 0.25% fee applies monthly.
+</p>
+<form [formGroup]="signupForm" (ngSubmit)="signup()">
+  <div class="container">
+    <div class="signupform">
+      <label for="email">Email</label>
+      <input type='email' id="email" formControlName="email" placeholder="example@example.com">
+      <div id="emailError" *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['email'].hasError('required') || signupForm.controls['email'].hasError('pattern')">
+          Please enter a valid email.
+        </div>
+      </div>
+    </div>
+    <div class="signupform">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" formControlName="firstName">
+      <div id="firstNameError" *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['firstName'].hasError('required') || signupForm.controls['firstName'].hasError('minlength')">
+          First name must be atleast 3 characters.
+        </div>
+      </div>
+    </div>
+    <div class="signupform">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" formControlName="lastName">
+      <div id="lastNameError" *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['lastName'].hasError('required') || signupForm.controls['lastName'].hasError('minlength')">
+          Last name must be atleast 3 characters.
+        </div>
+      </div>
+    </div>
+    <div class="signupform">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username">
+      <div id="usernameError" *ngIf="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['username'].hasError('required') || signupForm.controls['username'].hasError('minlength')">
+          Username must be atleast 3 characters.
+        </div>
+      </div>
+    </div>
+    <div class="signupform">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password">
+      <div id="passwordError" *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['password'].hasError('required')
+        || signupForm.controls['password'].hasError('minlength') || signupForm.controls['password'].hasError('maxlength')
+        || signupForm.controls['password'].hasError('pattern')">
+          Invalid Password - Must contain between 6 and 24 letters, numbers, underscore or hyphens.
+        </div>
+      </div>
+    </div>
+    <div class="signupform">
+      <label for="cpassword">Confirm Password</label>
+      <input type="password" id="cpassword" formControlName="cpassword">
+      <div id="cpasswordError" *ngIf="signupForm.controls['cpassword'].invalid && (signupForm.controls['cpassword'].dirty || signupForm.controls['cpassword'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['cpassword'].hasError('required')
+        || signupForm.controls['cpassword'].hasError('minlength') || signupForm.controls['cpassword'].hasError('maxlength')
+        || signupForm.controls['cpassword'].hasError('pattern')">
+          Invalid Password - Must contain between 6 and 24 letters, numbers, underscore or hyphens.
+        </div>
+        <div *ngIf="signupForm.get('cpassword')?.hasError('confirmPasswordValidator')">Passsword and
+          Confirm Password didn't match. </div>
+      </div>
+    </div>
+    <div class="signupform">
+      <label for="dob">Date of birth</label>
+      <input type="date" id="dob" formControlName="dob">
+    </div>
+    <div class="signupform">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" formControlName="phone" placeholder="123-456-7890">
+      <div id="phoneError" *ngIf="signupForm.controls['phone'].invalid && (signupForm.controls['phone'].dirty || signupForm.controls['phone'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['phone'].hasError('required') || signupForm.controls['phone'].hasError('pattern')">
+          Enter a valid phone number.
+        </div>
+      </div>
+    </div>
+
+    <div class="signupform">
+      <label for="risk">Risk</label>
+      <input type="number" id="risk" formControlName="risk">
+      <div id="riskError" *ngIf="signupForm.controls['risk'].invalid && (signupForm.controls['risk'].dirty || signupForm.controls['risk'].touched)" class="alert">
+        <div *ngIf="signupForm.controls['risk'].hasError('required')
+        || signupForm.controls['risk'].hasError('min') || signupForm.controls['risk'].hasError('max')">
+          Risk must be between 1 and 5.
+        </div>
+      </div>
+    </div>
+
+
+    <div class="signupform">
+      <button type="submit" id="loginbutton" [disabled]="!signupForm.valid">Sign Up</button>
+    </div>
+
+    <div class="login">
+      <a routerLink="">Log In?</a>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+<div class="container">
+    <app-header-logo></app-header-logo>
+    <app-navbar></app-navbar>
+<div class="head">
+    <h1 class="bolder">HOLDINGS</h1>
+ </div>
+ <div class="overview">
+     <span class="child">
+         <h4>Total Investment:</h4>
+         <h2>$ {{invested_amount | number: '1.2-2'}}</h2>
+     </span>
+     <span class="child">
+         <h4>Current Value:</h4>
+         <h2>$ {{current_amount | number: '1.2-2'}}</h2>
+     </span>
+     <span class="child">
+         <h4>Net Profit/Loss:</h4>
+         <h2 [ngClass]="{'green':current_amount>invested_amount,'red':current_amount<invested_amount}">$ {{current_amount-invested_amount| number:'1.2-2'}}
+             ({{((current_amount-invested_amount)/invested_amount)|percent:'1.2-2'}})
+         </h2>
+     </span>
+     <span class="child">
+         <h4>Funds Available:</h4>
+         <h2>$ {{funds | number: '1.2-2'}}</h2>
+     </span>
+ </div>
+
+ <h2>Stocks</h2>
+ <app-stock-portfolio></app-stock-portfolio>
+ <h2>Mutual Funds</h2>
+ <app-mf-portfolio></app-mf-portfolio>
+ <h2>Bonds</h2>
+ <app-bond-portfolio></app-bond-portfolio>
+ <hr />
+ <app-footer-bar></app-footer-bar>
+</div>

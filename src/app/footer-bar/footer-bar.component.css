@@ -1,0 +1,15 @@
+.paragraph-text {
+  font-family: 'Fidelity Sans', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5em;
+  color: black;
+  box-sizing: content-box;
+}
+footer {
+  padding: 0.5rem 1rem;
+  max-width: 62.5em;
+  background: transparent;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
