@@ -1,1 +1,45 @@
-<p>sell-trade works!</p>
+
+<div class="container">
+
+    <header>Sell <b>{{data.code}} </b> x<b> {{dataClone.quantity}} </b> Qty</header>
+
+    <p>LTP : {{dataClone.LTP | currency }}</p>
+  <div class="sellform">
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="dataClone.name" readonly>
+  </div>
+
+  <div class="sellform">
+    <label for="quantity">Quantity</label>
+    <input type="number" [max]="maxQuantity" [min]="1" id="quantity"  [(ngModel)]="dataClone.quantity" >
+  </div>
+
+  <div id="usernameError" *ngIf="quantityError">
+    Maximum quantity you can sell is {{maxQuantity}}
+  </div>
+
+  
+  <div class="sellform">
+    <label for="bankaccount">Bank Account</label>
+    <select name="bankaccount" id="bankaccount" [(ngModel)]="selected_bank_account">
+        <option *ngFor="let account of bank_accounts" [ngValue]="account" selected>
+            {{account.account_number}} : {{account.bank_name}}
+        </option>
+      </select>
+  </div>
+
+  <div class="sellform">
+        <p>Total Price : {{dataClone.quantity * dataClone.LTP | currency}}</p>  
+    </div>
+
+
+
+  <div class="sellform">
+    <button type="submit" id="sellbutton" (click)="sell()"  >Sell</button>
+  </div>
+
+  <div class="sellform">
+    <button type="button" id="cancelbutton" (click)="close()" >Cancel</button>
+  </div>
+
+</div>

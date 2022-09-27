@@ -19,6 +19,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { BuyComponentComponent } from './buy-component/buy-component.component';
 import { SellTradeComponent } from './sell-trade/sell-trade.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
