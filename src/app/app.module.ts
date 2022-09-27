@@ -17,6 +17,8 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { TradeHistoryComponent } from './trade-history/trade-history.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BuyComponentComponent } from './buy-component/buy-component.component';
+import { SellTradeComponent } from './sell-trade/sell-trade.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,14 +37,16 @@ import { BuyComponentComponent } from './buy-component/buy-component.component';
     SignupFormComponent,
     SignupPageComponent,
     TradeHistoryComponent,
-    BuyComponentComponent
+    BuyComponentComponent,
+    SellTradeComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
