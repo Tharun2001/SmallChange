@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfolio.component';
 import { TradeHistoryComponent } from './trade-history/trade-history.component';
