@@ -80,7 +80,7 @@
     </div>
     <div class="signupform">
       <label for="risk">Risk</label>
-      <input type="number" id="risk" formControlName="risk">
+      <input type="number" id="risk" formControlName="risk" min="1" max="5">
       <div id="riskError" *ngIf="signupForm.controls['risk'].invalid && (signupForm.controls['risk'].dirty || signupForm.controls['risk'].touched)" class="alert">
         <div *ngIf="signupForm.controls['risk'].hasError('required')
         || signupForm.controls['risk'].hasError('min') || signupForm.controls['risk'].hasError('max')">
