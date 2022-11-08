@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, mergeMap, Observable, of, throwError } from 'rxjs';
+import { catchError, map, mergeMap, Observable, of, switchMap, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
@@ -8,68 +8,59 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
   providedIn: 'root'
 })
 export class UserServiceService {
-  users: User[] = [
-    new User(
-      NaN,
-      'testuser1@gmail.com',
-      'Test',
-      'User 1',
-      'testuser1',
-      'user1_123',
-      new Date('1999-09-11'),
-      '9876543210',
-      3
-    ),
-    new User(
-      NaN,
-      'testuser1@gmail.com',
-      'Test',
-      'User 1',
-      'testuser2',
-      'user2_123',
-      new Date('1999-09-11'),
-      '9876543210',
-      3
-    )
-  ]
+  users: User[] = [];
+  private loggedInUser?: User
 
-  private loggedInUser?: User;
+  constructor(private http: HttpClient) {
+    this.loggedInUser = undefined;
+  }
+  private url = "http://localhost:4200/api/"
 
-  constructor(private http: HttpClient) { }
+  authenticateUser(username: string, password: string): Observable<User> {
+    let body = {"username" : `${username}`, "password" : `${password}`};
 
-  authenticateUser(username: string, password: string): Observable<boolean> {
-    let user: User | undefined;
-    user = this.users.find(u => u.username === username);
-    console.log("User find =", user)
-    if (user && user.password === password) {
-      this.loggedInUser = user;
-      return of(true);
-    }
-    else {
-      return of(false);
-    }
+  return this.http.post<User>(this.url + "login", body)
+            .pipe(map(user => {
+                this.loggedInUser = user;
+                return user;
+            }));
   }
 
   isLoggedIn(): boolean {
     return this.loggedInUser != undefined;
   }
 
-  registerNewUser(user: User): Observable<User> {
-    const existinUser = this.users.find(u => u.email === user.email || u.username === user.username);
-    if (existinUser) {
-      return throwError(() => 'User with this email/username already present')
+  registerNewUser(user: User): Observable<number> {
+    console.log("Inside registerNewUser funtcion")
+    let body = {"username" : `${user.username}`};
+
+    let registerBody = {
+      "firstName" : `${user.firstName}`,
+      "lastName" : `${user.lastName}`,
+      "dob" : `${user.dob}`,
+      "email" : `${user.email}`,
+      "phone" : `${user.phone}`,
+      "username" : `${user.username}`,
+      "password" : `${user.password}`
     }
-    this.users.push(user);
-    return of(user)
+    return this.http.post<number>(this.url + "accounts", body)
+            .pipe(switchMap(count => {
+                if(count == 0) {
+                  return this.http.post<number>(this.url + "register", registerBody);
+                }
+                else {
+                  return of(0);
+                }
+            }));
   }
 
   logout() {
     this.loggedInUser = undefined
   }
 
-  getLoginUserId(): number | undefined {
-    return this.loggedInUser?.clientId;
-  }
+  // getLoginUserId(): number | undefined {
+  //   return this.loggedInUser?.clientId;
+  // }
 
   getLoginUserEmail(): string | undefined {
     return this.loggedInUser?.email;

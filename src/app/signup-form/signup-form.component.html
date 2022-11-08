@@ -94,6 +94,9 @@
       <button type="submit" id="loginbutton" [disabled]="!signupForm.valid">Sign Up</button>
     </div>
 
+    <div *ngIf="userAlreadyRegistered == true" class="alert">User already exists! </div>
+
+
     <div class="login">
       <a routerLink="">Log In?</a>
     </div>
