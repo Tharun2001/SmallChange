@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { StockHolding } from 'src/app/models/stock-holding';
-import { dummy_data_stocks } from '../../models/mock-data';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { SellTradeComponent } from 'src/app/sell-trade/sell-trade.component';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { SecurityHolding } from 'src/app/models/security-holding';
+import { PortfolioService } from '../service/portfolio.service';
 
 @Component({
   selector: 'app-stock-portfolio',
@@ -11,14 +11,17 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ['./stock-portfolio.component.css']
 })
 export class StockPortfolioComponent implements OnInit {
+  assest_class = ['Main Index', 'Small cap company stocks', 'International market stocks'];
   @Input() eventTriggered!: boolean;
-  data: StockHolding[] = dummy_data_stocks;
+  @Output("updateFunds") updateFunds: EventEmitter<any> = new EventEmitter();
+  
+  data!: SecurityHolding[];
   invested_amount: number = 0;
   current_amount: number = 0;
   // dtOptions: DataTables.Settings = {};
 
   constructor( private dialog: MatDialog,
-    private snackbar: MatSnackBar) {
+    private snackbar: MatSnackBar, private portfolioService: PortfolioService) {
   }
   ngOnChanges() {
     this.ngOnInit();
@@ -28,10 +31,24 @@ export class StockPortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.invested_amount = 0;
     this.current_amount = 0;
-    for (var i = 0; i < this.data.length; i++) {
-      this.invested_amount += (this.data[i].buy_price * this.data[i].quantity)
-      this.current_amount += (this.data[i].LTP * this.data[i].quantity)
-    }
+    this.getStock();
+    console.log(this.data);
+
+  }
+
+  getStock(){
+    this.portfolioService.getSecurities().subscribe({ next: (holdings) => {
+      console.log(holdings)
+      this.data = holdings.filter((holding) => {
+        return this.assest_class.includes(holding.asset_class);
+      });
+      for (var i = 0; i < this.data.length; i++) {
+        this.invested_amount += this.data[i].invested_amount;
+        this.current_amount += (this.data[i].ltp * this.data[i].quantity)
+      }
+    }, error: () => {
+
+    }})
   }
 
   openDialog(a:any): void {
@@ -40,6 +57,8 @@ export class StockPortfolioComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.getStock();
+      this.updateFunds.emit();
       this.snackbar.open("Sell order : " + result.security.code +  " ("+result.sellQuantity +" qty) has been sold" , "OK");
       console.log('The dialog was closed', result);
     });

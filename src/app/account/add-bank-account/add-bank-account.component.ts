@@ -14,7 +14,8 @@ export class AddBankAccountComponent implements OnInit {
   accountError!: boolean;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private accountSerive: AccountService,public dialogRef: MatDialogRef<AddBankAccountComponent>) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+  private accountSerive: AccountService,public dialogRef: MatDialogRef<AddBankAccountComponent>) {}
 
   ngOnInit(): void {
   }

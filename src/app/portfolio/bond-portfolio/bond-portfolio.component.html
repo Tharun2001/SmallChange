@@ -2,13 +2,13 @@
     <div class="bond-table">
         <table datatable>
             <colgroup>
-                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 15%;">
                 <col span="1" style="width: 7%;">
-                <col span="1" style="width: 7%;">
+                <col span="1" style="width: 15%;">
                 <col span="1" style="width: 10%;">
                 <col span="1" style="width: 10%;">
-                <col span="1" style="width: 13%;">
-                <col span="1" style="width: 13%;">
+                <col span="1" style="width: 10%;">
+                <col span="1" style="width: 10%;">
                 <col span="1" style="width: 10%;">
                 <col span="1" style="width: 10%;">
                 <col span="1" style="width: 20%;">
@@ -17,26 +17,27 @@
                 <tr>
                     <th>Script</th>
                     <th>Code</th>
-                    <th>Quantity</th>
-                    <th>Buy Price</th>
+                    <th>Asset Class</th>
+                    <th>Qty.</th>
                     <th>LTP</th>
                     <th>Invested Amount</th>
                     <th>Current Value</th>
                     <th>Profit/Loss</th>
                     <th>%Change</th>
+                    <th>Manage</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let entry of data">
                     <td>{{entry.name}}</td>
                     <td>{{entry.code}}</td>
+                    <td>{{entry.asset_class}}</td>
                     <td>{{entry.quantity}}</td>
-                    <td>{{entry.buy_price | number: '1.2-2'}}</td>
-                    <td>{{entry.LTP | number: '1.2-2'}}</td>
-                    <td>{{entry.buy_price*entry.quantity | number: '1.2-2'}}</td>
-                    <td class="bolder" [ngClass]="{'green':entry.LTP>entry.buy_price,'red':entry.LTP<entry.buy_price}">{{entry.LTP*entry.quantity | number: '1.2-2'}}</td>
-                    <td class="bolder" [ngClass]="{'green':entry.LTP>entry.buy_price,'red':entry.LTP<entry.buy_price}">{{(entry.LTP-entry.buy_price)*entry.quantity | number: '1.2-2'}}</td>
-                    <td class="bolder" [ngClass]="{'green':entry.LTP>entry.buy_price,'red':entry.LTP<entry.buy_price}">{{((entry.LTP-entry.buy_price)/entry.buy_price)|percent:'1.2-2'}}</td>
+                    <td>{{entry.ltp | number: '1.2-2'}}</td>
+                    <td>{{entry.invested_amount | number: '1.2-2'}}</td>
+                    <td class="bolder" [ngClass]="{'green':entry.ltp*entry.quantity>entry.invested_amount,'red':entry.ltp*entry.quantity<entry.invested_amount}">{{entry.ltp*entry.quantity | number: '1.2-2'}}</td>
+                    <td class="bolder" [ngClass]="{'green':entry.ltp*entry.quantity>entry.invested_amount,'red':entry.ltp*entry.quantity<entry.invested_amount}">{{(entry.ltp*entry.quantity-entry.invested_amount) | number: '1.2-2'}}</td>
+                    <td class="bolder" [ngClass]="{'green':entry.ltp*entry.quantity>entry.invested_amount,'red':entry.ltp*entry.quantity<entry.invested_amount}">{{(entry.ltp*entry.quantity-entry.invested_amount)/entry.invested_amount | percent: '1.2-2'}}</td>
                     <td><button (click)="openDialog(entry)" >Sell</button></td>
                 </tr>
             </tbody>

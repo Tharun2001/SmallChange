@@ -1,7 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AccountService } from '../account/service/account.service';
 import { BankAccount } from '../models/bank-account';
 import { bank_accounts } from '../models/mock-data';
+import { SecurityHolding } from '../models/security-holding';
+import { SellService } from './service/sell.service';
 
 
 
@@ -12,7 +15,7 @@ import { bank_accounts } from '../models/mock-data';
 })
 export class SellTradeComponent implements OnInit {
 
-  bank_accounts : BankAccount[] = bank_accounts;
+  bank_accounts!: BankAccount[];
   selected_bank_account!: BankAccount;
 
   maxQuantity:number = 0;
@@ -22,13 +25,15 @@ export class SellTradeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SellTradeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+    @Inject(MAT_DIALOG_DATA) public data: SecurityHolding, public accountService: AccountService,
+    public sellService: SellService) {}
 
   ngOnInit(): void {
+    this.getBankAccounts();
     this.selected_bank_account = bank_accounts[0];
     this.quantityError = false
-  this.maxQuantity = this.data.quantity;
-  this.dataClone = Object.assign({},this.data)
+    this.maxQuantity = this.data.quantity;
+    this.dataClone = Object.assign({},this.data)
     console.log(this.data,this.dataClone)
 
 
@@ -56,14 +61,27 @@ export class SellTradeComponent implements OnInit {
 
   close() {
     this.dialogRef.close()
-    }
+  }
 
     sell(){
-    this.validateQuantity()
-    if(! this.quantityError){
-          this.dialogRef.close({security: this.data, sellQuantity: this.dataClone.quantity, bank_account: this.selected_bank_account})
-    }
+      this.validateQuantity()
+      if(!this.quantityError){
+        console.log(this.dataClone.sid, this.dataClone.quantity, this.dataClone.ltp);
+            this.sellService.sellTrades(this.dataClone.sid, this.dataClone.quantity, this.dataClone.ltp)
+            .subscribe({next: (res) => {
+              console.log(res);
+              this.dialogRef.close({security: this.data, sellQuantity: this.dataClone.quantity, bank_account: this.selected_bank_account})
+            },
+          error: (e) => {
+        }});   
+      }
     }
   
-
+    getBankAccounts(){
+      this.accountService.getBankAccounts().subscribe( { next: (bank_accounts) =>{
+        this.bank_accounts = bank_accounts;
+      }, error: (e) => {
+        
+      }})
+    }
 }

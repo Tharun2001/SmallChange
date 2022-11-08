@@ -140,6 +140,6 @@ export class AccountComponent implements OnInit {
         console.log(e.message);
       }
     });
-  this.FundForm.reset();
+    this.FundForm.reset();
   }
 }

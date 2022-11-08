@@ -1,0 +1,40 @@
+<app-header-logo></app-header-logo>
+<app-navbar></app-navbar>
+<div class="example-container mat-elevation-z8" >
+    <mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="code">
+          <mat-header-cell *matHeaderCellDef > Code </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.scode}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.sname}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="asset_class">
+            <mat-header-cell *matHeaderCellDef> Asset Class </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.assetClass}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ltp">
+          <mat-header-cell *matHeaderCellDef > LTP </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.ltp}} </mat-cell>
+        </ng-container>    
+        
+        <ng-container matColumnDef="trade">
+            <mat-header-cell *matHeaderCellDef > Trade </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <button mat-flat-button color="primary"  (click)="openDialog(row)">Buy</button>
+            </mat-cell>
+          </ng-container>  
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<hr />
+<app-footer-bar></app-footer-bar>

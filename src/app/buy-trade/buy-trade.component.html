@@ -1,0 +1,34 @@
+
+<div class="container">
+
+    <header>Sell <b>{{data.scode}} </b> x<b> {{quantity}} </b> Qty</header>
+
+    <p>LTP : {{dataClone.ltp | currency }}</p>
+  <div class="buyform">
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="dataClone.sname" readonly>
+  </div>
+
+  <div class="buyform">
+    <label for="quantity">Quantity</label>
+    <input type="number" [min]="1" id="quantity"  [(ngModel)]="quantity" >
+  </div>
+
+  <div id="usernameError" *ngIf="quantityError">
+    *Insufficient funds in account.
+  </div>
+
+
+  <div class="buyform">
+        <p>Total Price : {{quantity * dataClone.ltp | currency}}</p>  
+  </div>
+
+  <div class="buyform">
+    <button type="submit" id="buybutton" (click)="buy()"  >Buy</button>
+  </div>
+
+  <div class="buyform">
+    <button type="button" id="cancelbutton" (click)="close()" >Cancel</button>
+  </div>
+
+</div>

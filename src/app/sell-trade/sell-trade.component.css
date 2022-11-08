@@ -1,89 +1,99 @@
 .container {
-    width: 25rem;
-    border: solid 1px #ccc;
-    padding: 2rem 3rem 2rem 3rem;
-    margin: 0rem auto 0rem auto;
-  }
-  .forgotPassword {
-    text-align: center;
-  }
-  .signup {
-    text-align: center;
-    padding-top: 1rem;
-  }
-  .sellform {
-    margin-bottom: 1.5rem;
-  }
-  .sellform:last-child {
-    margin-bottom: 0rem;
-  }
-  .forgotpassword {
-    text-align: center;
-  }
-  input , select, option {
+  width: 25rem;
+  border: solid 1px #ccc;
+  padding: 2rem 3rem 2rem 3rem;
+  margin: 0rem auto 0rem auto;
+}
+
+.forgotPassword {
+  text-align: center;
+}
+
+.signup {
+  text-align: center;
+  padding-top: 1rem;
+}
+  
+.sellform {
+  margin-bottom: 0.8rem;
+}
+  
+.sellform:last-child {
+  margin-bottom: 0rem;
+}
+
+.forgotpassword {
+  text-align: center;
+}
+  
+input , select, option {
     width: 100%;
     display: block;
     box-sizing: border-box;
     padding: 0.25rem 1rem 0.25rem 1rem;
     font-size: 18px;
     line-height: 1.5em;
-  }
+}
 
-  label {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    font-weight: bold;
-  }
-  button {
-    width: 100%;
-    border: none;
-    display: block;
-    box-sizing: border-box;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    font-size: 32px;
-    line-height: 1.5em;
-    justify-content: center;
-    background-color: rgb(255, 30, 0);
-    color: white;
-    cursor: pointer;
-  }
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: "Fidelity Sans", Arial, sans-serif;
+  font-weight: bold;
+}
 
- #cancelbutton{
-    background-color: transparent;
-    color: black;
-    border: solid rgba(0, 0, 0, 0.822);
-    border-width: 0.5pt;
- }
- 
-  p {
-    margin: 1rem;
-    padding-bottom: 1rem;
-    box-sizing: content-box;
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    font-size: 25px;
-    color: #000;
-    text-align: center;
-    font-weight: normal;
-  }
-  header {
-    padding-top: 1rem;
-    margin: 0;
-    box-sizing: content-box;
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    font-size: 32px;
-    line-height: 1.5em;
-    color: #000;
-    text-align: center;
-  }
-  
-  #usernameError {
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    font-size: 0.8em;
-    font-weight: bold;
-    text-align: center;
-    color: red;
-    display: block;
-  }
+button {
+  width: 100%;
+  border: none;
+  display: block;
+  box-sizing: border-box;
+  /* padding: 0.5rem 1rem 0.5rem 1rem; */
+  font-family: "Fidelity Sans", Arial, sans-serif;
+  /* font-size: 32px; */
+  font-size: 24px;
+  line-height: 1.5em;
+  justify-content: center;
+  background-color: rgb(255, 30, 0);
+  color: white;
+  cursor: pointer;
+}
+
+#cancelbutton{
+  background-color: transparent;
+  color: black;
+  border: solid rgba(0, 0, 0, 0.822);
+  border-width: 0.5pt;
+}
+
+
+p {
+  /* margin: 1rem;
+  padding-bottom: 1rem;
+  box-sizing: content-box; */
+  font-family: "Fidelity Sans", Arial, sans-serif;
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+  font-weight: normal;
+}
+
+header {
+  /* padding-top: 1rem;
+  margin: 0; */
+  box-sizing: content-box;
+  font-family: "Fidelity Sans", Arial, sans-serif;
+  font-size: 22px;
+  /* line-height: 1.5em; */
+  color: #000;
+  text-align: center;
+}
+
+#usernameError {
+  font-family: "Fidelity Sans", Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  display: block;
+} 
   

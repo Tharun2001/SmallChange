@@ -33,6 +33,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { SecuritiesComponent } from './securities/securities.component';
+import { BuyTradeComponent } from './buy-trade/buy-trade.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import {MatIconModule} from '@angular/material/icon';
     BuyComponentComponent,
     SellTradeComponent,
     AccountComponent,
-    AddBankAccountComponent
+    AddBankAccountComponent,
+    SecuritiesComponent,
+    BuyTradeComponent
   ],
   imports: [
     BrowserModule,

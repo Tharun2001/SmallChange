@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { dummy_data_mfs, dummy_data_stocks } from 'src/app/models/mock-data';
+import { dummy_data_mfs} from 'src/app/models/mock-data';
 import { MfHolding } from 'src/app/models/mf-holding';
 
 import { MatDialog} from '@angular/material/dialog'
@@ -32,9 +32,9 @@ export class MfPortfolioComponent implements OnInit {
   }
 
   onClick() {
-    dummy_data_stocks.push(
-      { name: 'App', code: 'AAL', quantity: 100, buy_price: 155.34, LTP: 154.29, asset_class: 'AC' }
-    );
+    // dummy_data_stocks.push(
+    //   { name: 'App', code: 'AAL', quantity: 100, buy_price: 155.34, LTP: 154.29, asset_class: 'AC' }
+    // );
   }
 
   openDialog(a:any): void {

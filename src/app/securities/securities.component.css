@@ -1,0 +1,43 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.mat-header-cell{
+    color: white;
+    background: black;
+    font-size: 16px;
+    justify-content: center;
+}
+
+.mat-cell{
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.mat-row:nth-child(even){background-color: #f2f2f2;}
+
+
+.mat-column-name{
+    flex: 0 0 20%;
+}
+
+.mat-column-code{
+    flex: 0 0 10%;
+}
+
+.mat-column-asset_class{
+    flex: 0 0 30%;
+}
+
+.mat-column-ltp{
+    flex: 0 0 10%;
+}

@@ -26,11 +26,11 @@
  </div>
 
  <h2>Stocks</h2>
- <app-stock-portfolio></app-stock-portfolio>
- <h2>Mutual Funds</h2>
- <app-mf-portfolio></app-mf-portfolio>
+ <app-stock-portfolio (updateFunds)="getAccountDetails()"></app-stock-portfolio>
+ <!-- <h2>Mutual Funds</h2>
+ <app-mf-portfolio></app-mf-portfolio> -->
  <h2>Bonds</h2>
- <app-bond-portfolio></app-bond-portfolio>
+ <app-bond-portfolio (updateFunds)="getAccountDetails()"></app-bond-portfolio>
  <hr />
  <app-footer-bar></app-footer-bar>
 </div>

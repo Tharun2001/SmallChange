@@ -10,14 +10,16 @@ import { NotLoggedInGuard } from './guards/not-logged-in.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { BuyComponentComponent } from './buy-component/buy-component.component';
 import { AccountComponent } from './account/account.component';
+import { SecuritiesComponent } from './securities/securities.component';
 
 
 const routes = [
   { path: '', component: LoginPageComponent, canActivate: [NotLoggedInGuard]},
   { path: 'signup', component: SignupPageComponent, canActivate: [NotLoggedInGuard]},
-  { path: 'portfolio', component: ViewPortfolioComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'portfolio', component: ViewPortfolioComponent,},
   { path: 'activity', component: TradeHistoryComponent},
-  { path: 'buy', component: BuyComponentComponent, canActivate: [IsLoggedInGuard]},
+  //{ path: 'buy', component: BuyComponentComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'buy', component: SecuritiesComponent},
   { path: 'account', component: AccountComponent}
 ]
 
