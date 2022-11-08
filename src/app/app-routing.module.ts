@@ -19,9 +19,9 @@ const routes = [
   { path: 'signup', component: SignupPageComponent, canActivate: [NotLoggedInGuard]},
   { path: 'portfolio', component: ViewPortfolioComponent,},
   { path: 'activity', component: TradeHistoryComponent},
-  { path: 'buy', component: SecuritiesComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'buy', component: SecuritiesComponent},
   { path: 'account', component: AccountComponent, canActivate: [IsLoggedInGuard]},
-  { path: 'preferences', component: PreferencesComponent, canActivate: [IsLoggedInGuard]}
+  { path: 'preferences', component: PreferencesComponent}
 ]
 
 @NgModule({
