@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { TradeHistoryComponent } from './trade-history.component';
 
+
 describe('TradeHistoryComponent', () => {
   let component: TradeHistoryComponent;
   let fixture: ComponentFixture<TradeHistoryComponent>;
@@ -92,7 +93,7 @@ describe('TradeHistoryComponent', () => {
     component.getTradeHistory('amount');
     component.endAmount = '';
     component.stAmount = '';
-    component.amountSubmit(form);
+    component.amountSubmit();
     fixture.detectChanges();
     const error = fixture.debugElement.query(By.css('div.error'));
     expect(error).toBeTruthy();
@@ -103,7 +104,7 @@ describe('TradeHistoryComponent', () => {
     component.getTradeHistory('amount');
     component.endAmount = '100';
     component.stAmount = '0';
-    component.amountSubmit(form);
+    component.amountSubmit();
     fixture.detectChanges();
     const error = fixture.debugElement.query(By.css('div.error'));
     expect(error).toBeFalsy();

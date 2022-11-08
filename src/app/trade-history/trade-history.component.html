@@ -1,13 +1,13 @@
 <app-header-logo></app-header-logo>
 <app-navbar></app-navbar>
 <h1> Trade History</h1>
-<nav>
+<!-- <nav>
     <button [ngClass]="{'active': filter == ''}" (click)="getTradeHistory('')">All trades</button>
     <button [ngClass]="{'active': filter == 'asset_class'}" (click)="getTradeHistory('asset_class')">By assest class</button>
     <button [ngClass]="{'active': filter == 'side'}" (click)="getTradeHistory('side')">By side</button>
     <button [ngClass]="{'active': filter == 'date'}" (click)="getTradeHistory('date')">By Date</button>
     <button [ngClass]="{'active': filter == 'amount'}" (click)="getTradeHistory('amount')">By specific amount</button>
-</nav>
+</nav> -->
 <div class="options">
     <section class="date-options" *ngIf="filter == 'date'">
         <form #dateForm="ngForm" (ngSubmit)="dateSubmit(dateForm)">
@@ -19,22 +19,13 @@
         <div class="error" *ngIf="error == 'invalid-date'">*Invalid - start date should be greater than end date.</div>
     </section>
 
-    <section class="amount-options" *ngIf="filter == 'amount'">
-        <form #amountForm="ngForm" (ngSubmit)="amountSubmit(amountForm)">
-            <label for="from">From:</label> <input name="stAmount" type="text" [(ngModel)]="stAmount">
-            <label for="and">and:</label> <input name="endAmount" type="text" [(ngModel)]="endAmount">
-            <button type="submit">Go</button>
-        </form>
-        <div class="error" *ngIf="error == 'empty-amount'">*Invalid - amount(s) are empty.</div>
-        <div class="error" *ngIf="error == 'invalid-amount'">*Invalid - start amount should be greater than end amount.</div>
-        <div class="error" *ngIf="error == 'invalid-amount-chars'">*Invalid - should contain valid a number.</div>
-    </section>
-
     <section class="asset-options" *ngIf="filter == 'asset_class'">
         <ul>
             <li><label>Main Index</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Main index stocks')"></li>
             <li><label>Small Cap</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Small cap company stocks')"></li>
             <li><label>International</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('International market stocks')"></li>
+            <li><label>Government bonds</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Government bonds')"></li>
+            <li><label>Corporate bonds</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Corporate bonds')"></li>
         </ul>
     </section>
 
@@ -45,7 +36,7 @@
         </ul>
     </section>
 </div>
-<table>
+<!-- <table *ngIf="trades.length > 0">
     <tr>
         <th>Time</th>
         <th>Name</th>
@@ -64,7 +55,121 @@
         <td>{{trade.price | currency:'USD':true}}</td>
         <td>{{trade.quantity}}</td>
     </tr>
-</table>
+</table> -->
+
+<div class="main-container">
+    <div class="filters-container">
+        <div class="asset-class-filter">
+            <mat-form-field appearance="fill">
+                <mat-select class="asset-class-dropdown" placeholder="Asset class" [formControl]="assetClassForm" [(value)]="selectedAssetClasses" multiple>
+                  <mat-option *ngFor="let assetClass of assetClassList" [value]="assetClass">{{assetClass}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <!-- <p>
+                {{selectedAssetClasses | json}}
+              </p> -->
+        </div>
+
+        <div class="side-filter">
+            <mat-form-field appearance="fill">
+                <mat-label>Side</mat-label>
+                <mat-select [formControl]="sideFilter" [(value)]="selectedSide">
+                    <mat-option>None</mat-option>
+                    <mat-option value="Buy">Buy</mat-option>
+                    <mat-option value="Sell">Sell</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="date-filter">
+            <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Start date">
+                  <input matEndDate formControlName="end" placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              
+                <mat-error *ngIf="dateRange.controls['start'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="dateRange.controls['end'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+              </mat-form-field>
+              
+              <!-- <p>Selected range: {{dateRange.value | json}}</p> -->
+        </div>
+
+        <div class="amount-options">
+            <table>
+                <tr>
+                    <td><label for="from">Start amount:</label></td>
+                    <td><input name="stAmount" type="text" [(ngModel)]="stAmount"></td>
+                </tr>
+                <tr>
+                    <td><label for="and">End amount:</label></td>
+                    <td> <input name="endAmount" type="text" [(ngModel)]="endAmount"></td>
+                </tr>
+            </table>
+            <div class="error" *ngIf="error == 'empty-amount'">*Invalid - amount(s) are empty.</div>
+            <div class="error" *ngIf="error == 'invalid-amount'">*Invalid - start amount should be greater than end amount.</div>
+            <div class="error" *ngIf="error == 'invalid-amount-chars'">*Invalid - should contain valid a number.</div>
+        </div>
+        <div>
+           
+        </div>
+        
+    </div>
+    <button type="submit" (click)="filterSubmit()">Submit</button>
+    <div class="example-container mat-elevation-z8" >
+        <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="code">
+              <mat-header-cell *matHeaderCellDef > Code </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.code}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="asset_class">
+                <mat-header-cell *matHeaderCellDef> Asset Class </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.asset_class}} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="quantity">
+              <mat-header-cell *matHeaderCellDef > Quantity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.quantity}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="trade_type">
+                <mat-header-cell *matHeaderCellDef> Side </mat-header-cell>
+                <mat-cell *matCellDef="let row" 
+                [ngClass]="{'buy': row.trade_type == 'Buy', 'sell': row.trade_type == 'Sell'}"> {{row.trade_type}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.date}} </mat-cell>
+            </ng-container>
+        
+            <!-- <ng-container matColumnDef="time">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Time</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.time}} </mat-cell>
+            </ng-container> -->
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>
+
 
 <hr />
 <app-footer-bar></app-footer-bar>

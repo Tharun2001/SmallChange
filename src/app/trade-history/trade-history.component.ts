@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { dummy_data_order } from '../models/mock-data';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
+
 import { TradeStock } from '../models/trade-stock';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import { TradeService } from './service/trade.service';
 
 @Component({
   selector: 'app-trade-history',
@@ -9,6 +13,28 @@ import { TradeStock } from '../models/trade-stock';
   styleUrls: ['./trade-history.component.css']
 })
 export class TradeHistoryComponent implements OnInit {
+
+  displayedColumns = ['name', 'code', 'asset_class', 'quantity', 'price', 'trade_type', 
+  'date'];
+
+  dataSource!: MatTableDataSource<TradeStock>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  assetClassForm = new FormControl();
+  sideFilter = new FormControl();
+
+
+  assetClassList = ['Main index stocks', 'Small cap company stocks', 'International market stocks', 
+  'Government bonds', 'Corporate bonds'];
+  selectedAssetClasses!: any;
+  selectedSide!: any;
+  dateRange = new FormGroup({
+    start: new FormControl(null),
+    end: new FormControl(null),
+  });
+
   error = "";
   filter = '';
   stAmount = '';
@@ -18,37 +44,73 @@ export class TradeHistoryComponent implements OnInit {
   assestclass = '';
   side = '';
   validChars = new RegExp('^[0-9.]*$');
-  trades: TradeStock[] = dummy_data_order;
-  constructor() { }
+  trades!: TradeStock[];
+  fullTrades!: TradeStock[];
+
+  constructor(private tradeService: TradeService) {}
 
   ngOnInit(): void {
-  }
+    this.tradeService.getTrades().subscribe((trades) => {
+      console.log('trades', trades)
+      this.fullTrades = trades;
+      for(var i=0; i<this.fullTrades.length; i++){
+        if(this.fullTrades[i].trade_type == 'B'){
+          this.fullTrades[i].trade_type = 'Buy';
+        }
+        else{
+          this.fullTrades[i].trade_type = 'Sell';
+        }
+      }
+      this.dataSource = new MatTableDataSource(this.fullTrades);
+      this.dataSource.paginator = this.paginator;
+    }, (e) => {
 
+    });
+    
+  }
+  filterSubmit(){
+    this.trades = this.fullTrades.filter((trade) => {
+      console.log(trade.asset_class);
+      return trade.trade_type == this.selectedSide
+    });
+    this.dataSource = new MatTableDataSource(this.trades);
+    this.dataSource.paginator = this.paginator;
+
+    console.log(this.assestclass);
+  }
+  
   getTradeHistory(filter: string){
     this.filter = filter;
     if(filter == ''){
-      this.trades = dummy_data_order;
+      this.trades = this.fullTrades;
     }
+    this.dataSource = new MatTableDataSource(this.trades);
+    this.dataSource.paginator = this.paginator;
   }
 
   onAssetOptionSelection(option: string){
     this.assestclass = option;
-    this.trades = dummy_data_order.filter((trade) => {
+    this.trades = this.fullTrades.filter((trade) => {
       console.log(trade.asset_class);
       return trade.asset_class == this.assestclass
     });
+    this.dataSource = new MatTableDataSource(this.trades);
+    this.dataSource.paginator = this.paginator;
+
     console.log(this.assestclass);
   }
 
   onSideOptionSelection(option: string){
     this.side = option;
-    this.trades = dummy_data_order.filter((trade) => {
+    this.trades = this.fullTrades.filter((trade) => {
       return trade.trade_type == option;
     });
+    this.dataSource = new MatTableDataSource(this.trades);
+    this.dataSource.paginator = this.paginator;
     console.log(this.side);
   }
 
-  amountSubmit(form: NgForm){
+  amountSubmit(){
     if(this.stAmount == '' || this.endAmount == ''){
       this.error = 'empty-amount';
       return;
@@ -64,7 +126,9 @@ export class TradeHistoryComponent implements OnInit {
     this.error = '';
     console.log(this.stAmount, this.endAmount);
     //form.resetForm();
-    this.trades = dummy_data_order.filter((trade) => {return trade.price > parseFloat(this.stAmount) && trade.price < parseFloat(this.endAmount)})
+    this.trades = this.fullTrades.filter((trade) => {return trade.price > parseFloat(this.stAmount) && trade.price < parseFloat(this.endAmount)})
+    this.dataSource = new MatTableDataSource(this.trades);
+    this.dataSource.paginator = this.paginator;
   }
 
   dateSubmit(form: NgForm){
@@ -78,7 +142,10 @@ export class TradeHistoryComponent implements OnInit {
     }
     this.error = '';
     console.log(this.stDate, this.endDate);
-    this.trades = dummy_data_order.filter((trade) => {return new Date(trade.date).getTime() >= new Date(this.stDate).getTime()
+    this.trades = this.fullTrades.filter((trade) => {return new Date(trade.date).getTime() >= new Date(this.stDate).getTime()
     && new Date(trade.date).getTime() <= new Date(this.endDate).getTime() });
+    this.dataSource = new MatTableDataSource(this.trades);
+    this.dataSource.paginator = this.paginator;
   }
+  
 }
