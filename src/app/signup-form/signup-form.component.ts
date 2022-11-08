@@ -39,16 +39,17 @@ export class SignupFormComponent implements OnInit {
   }
 
   signup() {
-    let user: User = new User(NaN,
-      this.signupForm.get('email')?.value,
-      this.signupForm.get('firstName')?.value,
-      this.signupForm.get('lastName')?.value,
-      this.signupForm.get('username')?.value,
-      this.signupForm.get('password')?.value,
-      this.signupForm.get('dob')?.value,
-      this.signupForm.get('phone')?.value,
-      this.signupForm.get('risk')?.value,
-    );    
+    // let user: User = new User(NaN,
+    //   this.signupForm.get('email')?.value,
+    //   this.signupForm.get('firstName')?.value,
+    //   this.signupForm.get('lastName')?.value,
+    //   this.signupForm.get('username')?.value,
+    //   this.signupForm.get('password')?.value,
+    //   this.signupForm.get('dob')?.value,
+    //   this.signupForm.get('phone')?.value,
+    //   this.signupForm.get('risk')?.value,
+    // );
+    let user: User = new User("a", "a", "", '', '', '', '');
     this.userService.registerNewUser(user);
     this.router.navigate(['']);
   }

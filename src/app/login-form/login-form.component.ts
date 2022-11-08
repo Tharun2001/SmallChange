@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { UserServiceService } from '../services/user-service.service';
 @Component({
   selector: 'app-login-form',
@@ -56,13 +57,12 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-    this.userService.authenticateUser(this.username,
-      this.password).subscribe(data => {
-        if (data) {
-          let url = "/portfolio"
-          this.router.navigate([url]);
-          console.log("After route");
-        }
-      })
+    (this.userService.authenticateUser(window.btoa(this.username),
+      window.btoa(this.password))).pipe(first())
+      .subscribe({
+          next: () => {
+              this.router.navigateByUrl('/portfolio');
+          }
+      });
 }
 }
