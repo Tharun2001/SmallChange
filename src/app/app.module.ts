@@ -21,7 +21,18 @@ import { SellTradeComponent } from './sell-trade/sell-trade.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { AccountComponent } from './account/account.component';
+import { AddBankAccountComponent } from './account/add-bank-account/add-bank-account.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -40,7 +51,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SignupPageComponent,
     TradeHistoryComponent,
     BuyComponentComponent,
-    SellTradeComponent
+    SellTradeComponent,
+    AccountComponent,
+    AddBankAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +63,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     NoopAnimationsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

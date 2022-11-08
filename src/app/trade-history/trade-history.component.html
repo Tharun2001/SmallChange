@@ -1,62 +1,6 @@
 <app-header-logo></app-header-logo>
 <app-navbar></app-navbar>
 <h1> Trade History</h1>
-<!-- <nav>
-    <button [ngClass]="{'active': filter == ''}" (click)="getTradeHistory('')">All trades</button>
-    <button [ngClass]="{'active': filter == 'asset_class'}" (click)="getTradeHistory('asset_class')">By assest class</button>
-    <button [ngClass]="{'active': filter == 'side'}" (click)="getTradeHistory('side')">By side</button>
-    <button [ngClass]="{'active': filter == 'date'}" (click)="getTradeHistory('date')">By Date</button>
-    <button [ngClass]="{'active': filter == 'amount'}" (click)="getTradeHistory('amount')">By specific amount</button>
-</nav> -->
-<div class="options">
-    <section class="date-options" *ngIf="filter == 'date'">
-        <form #dateForm="ngForm" (ngSubmit)="dateSubmit(dateForm)">
-            <label for="from">From:</label>  <input name="stDate" type="date" [(ngModel)]="stDate">
-            <label for="and">to:</label><input name="endDate" type="date" [(ngModel)]="endDate">
-            <button type="submit">Go</button>
-        </form>
-        <div class="error" *ngIf="error == 'empty-date'">*Invalid - date(s) are empty.</div>
-        <div class="error" *ngIf="error == 'invalid-date'">*Invalid - start date should be greater than end date.</div>
-    </section>
-
-    <section class="asset-options" *ngIf="filter == 'asset_class'">
-        <ul>
-            <li><label>Main Index</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Main index stocks')"></li>
-            <li><label>Small Cap</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Small cap company stocks')"></li>
-            <li><label>International</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('International market stocks')"></li>
-            <li><label>Government bonds</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Government bonds')"></li>
-            <li><label>Corporate bonds</label><input type="radio" name="asset_class" (change)="onAssetOptionSelection('Corporate bonds')"></li>
-        </ul>
-    </section>
-
-    <section class="side-options" *ngIf="filter == 'side'">
-        <ul>
-            <li><label>Buy</label><input type="radio" name="side_option" (change)="onSideOptionSelection('buy')"></li>
-            <li><label>Sell</label><input type="radio" name="side_option" (change)="onSideOptionSelection('sell')"></li>
-        </ul>
-    </section>
-</div>
-<!-- <table *ngIf="trades.length > 0">
-    <tr>
-        <th>Time</th>
-        <th>Name</th>
-        <th>Symbol</th>
-        <th>Asset class</th>
-        <th>Side</th>
-        <th>Price</th>
-        <th>Quantity</th>
-    </tr>
-    <tr *ngFor="let trade of trades">
-        <td>{{trade.date}} {{trade.time}}</td>
-        <td>{{trade.name}}</td>
-        <td>{{trade.code}}</td>
-        <td>{{trade.asset_class}}</td>
-        <td [ngClass]="{'buy': trade.trade_type == 'buy', 'sell': trade.trade_type == 'sell'}">{{trade.trade_type}}</td>
-        <td>{{trade.price | currency:'USD':true}}</td>
-        <td>{{trade.quantity}}</td>
-    </tr>
-</table> -->
-
 <div class="main-container">
     <div class="filters-container">
         <div class="asset-class-filter">
@@ -114,11 +58,11 @@
             <div class="error" *ngIf="error == 'invalid-amount-chars'">*Invalid - should contain valid a number.</div>
         </div>
         <div>
-           
         </div>
-        
     </div>
     <button type="submit" (click)="filterSubmit()">Submit</button>
+    
+    
     <div class="example-container mat-elevation-z8" >
         <mat-table [dataSource]="dataSource" matSort>
             <ng-container matColumnDef="code">

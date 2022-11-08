@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box
+} 
+
+.account-main{
+    margin: 30px 100px
+}
+
+.account-container{
+    display: flex;
+    
+}
+
+.account-container-content{
+    margin-left: 200px;
+}
+
+.account-main label{
+    font-size: 14px;
+}
+
+.account-values{
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.details-container{
+    margin-top: 10px;
+    display: flex;
+    margin-right: 80px;
+}
+
+.detail-options-container{
+    border-right: groove 1px;
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    justify-self: start;
+    margin-left: 50px;
+}
+
+.detail-option{
+    width: 200px;
+    border-top: groove 1px;
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+.detail-options-container button{
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: left;
+    border: none;
+    background-color: white;
+}
+
+.detail-options-container button:hover{
+    background-color: #f2f2f2;;
+    cursor: pointer;
+}
+.detail-options-container button.active{
+    background-color: #f2f2f2; 
+    color: #568200;
+    display: block;
+}
+
+.detail-content{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 500px;
+}
+
+table{
+    font-size: 14px;
+    margin-top: 10px;
+    width: 500px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+table th {
+    background-color: #568200;
+    color: white;
+}
+
+table td, th{ 
+    text-align: center;
+   padding: 10px 20px;
+   border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: hsla(0, 0%, 95%, 0.856);
+}
+
+.bank-details{
+    display: flex;
+    flex-direction: column;
+}
+.btn-bank{
+    align-self: center;
+    width: 145px;
+    border: none;
+    font-size: 14px;
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.btn-bank:hover{
+    background-color: rgb(77, 73, 73);
+    cursor: pointer;
+}
+
+
+.mat-form-field{
+    margin: 0px 10px;
+}
+
+button.add-funds-btn,button.withdraw-funds-btn{
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 8px;
+    cursor: pointer;
+}
+
+button.add-funds-btn{
+    background-color: #54bb58;
+}
+
+button.withdraw-funds-btn{
+    background-color: rgb(64, 64, 233);
+}
+
+.fund-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fund-value{
+    margin-top: 0;
+    font-size: 32px;
+}
+
+.fund-options{
+    margin-top: 10px;
+}

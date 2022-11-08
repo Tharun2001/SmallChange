@@ -1,0 +1,29 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table td, th{ 
+    padding: 8px 10px;
+ }
+
+button{
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 8px;
+    cursor: pointer;
+}
+
+button.add-bank-btn{
+    background-color: #4CAF50;
+}
+
+button.cancel-bank-btn{
+    background-color: #f44336;
+}

@@ -91,24 +91,24 @@ export var dummy_data_stocks: StockHolding[] = [
       { name: 'SPDR S&P 500 ETF', code: 'SPY', quantity: 12, buy_price: 439.45, LTP: 452.77, asset_class:"Corporate bonds" },
   ]
  
-  export var dummy_data_order: TradeStock[] = [
-    { name: 'Apple Inc', code: 'AAPL', quantity: 100, price: 155.34, asset_class: "Main index stocks", trade_type: "buy", date: "2021/02/28", time : "09:10" },
-    { name: 'Tesla Inc', code: 'TSLA', quantity: 20, price: 657.65, asset_class: "Main index stocks", trade_type: "buy", date: "2021/03/23", time : "11:40"},
-    { name: 'Amazon.com Inc', code: 'AMZN', quantity: 12, price: 2354.34, asset_class: "Main index stocks", trade_type: "buy", date: "2021/04/23", time : "14:00" },
-    { name: 'Vinco Ventures', code: 'BBIG', quantity: 550, price: 5.56,  asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/08", time : "12:20"},
-    { name: 'Microsoft Corp', code: 'MSFT', quantity: 34, price: 350.76, asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/02", time : "13:18" },
-    { name: 'Sphere 3D Corp', code: 'ANY', quantity: 85, price: 6.42,  asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/13", time : "10:10"},
-    { name: 'Lucid Group Inc Shs', code: 'LCID', quantity: 188, price: 22.33,  asset_class: "International market stocks", trade_type: "buy", date: "2021/06/18", time : "14:54" },
-    { name: 'Aliaba Group Holding Ltd ADR', code: 'BABA', quantity: 30, price: 175.5, asset_class: "International market stocks", trade_type: "buy", date: "2021/04/23", time : "14:22" },
-    { name: 'Tesla Inc', code: 'TSLA', quantity: 20, price: 657.65, asset_class: "Main index stocks", trade_type: "sell", date: "2021/08/03", time : "13:12"},
-    { name: 'Amazon.com Inc', code: 'AMZN', quantity: 12, price: 2354.34, asset_class: "Main index stocks", trade_type: "sell", date: "2021/05/28", time : "11:04" },
-    { name: 'Vinco Ventures', code: 'BBIG', quantity: 550, price: 5.56,  asset_class: "Small cap company stocks", trade_type: "sell", date: "2021/05/23", time : "10:07"},
-    { name: 'Microsoft Corp', code: 'MSFT', quantity: 34, price: 350.76, asset_class: "Small cap company stocks", trade_type: "sell", date: "2021/06/23", time : "9:45" },
-    { name: 'Tesla Inc', code: 'TSLA', quantity: 20, price: 650.65, asset_class: "Main index stocks", trade_type: "buy", date: "2021/09/03", time : "11:12"},
-    { name: 'Amazon.com Inc', code: 'AMZN', quantity: 12, price: 2154.34, asset_class: "Main index stocks", trade_type: "buy", date: "2021/08/28", time : "13:04" },
-    { name: 'Vinco Ventures', code: 'BBIG', quantity: 550, price: 4.56,  asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/23", time : "11:07"},
-    { name: 'Microsoft Corp', code: 'MSFT', quantity: 34, price: 310.76, asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/26", time : "12:45" },
-  ]
+  // export var dummy_data_order: TradeStock[] = [
+  //   { name: 'Apple Inc', code: 'AAPL', quantity: 100, price: 155.34, asset_class: "Main index stocks", trade_type: "buy", date: "2021/02/28", time : "09:10" },
+  //   { name: 'Tesla Inc', code: 'TSLA', quantity: 20, price: 657.65, asset_class: "Main index stocks", trade_type: "buy", date: "2021/03/23", time : "11:40"},
+  //   { name: 'Amazon.com Inc', code: 'AMZN', quantity: 12, price: 2354.34, asset_class: "Main index stocks", trade_type: "buy", date: "2021/04/23", time : "14:00" },
+  //   { name: 'Vinco Ventures', code: 'BBIG', quantity: 550, price: 5.56,  asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/08", time : "12:20"},
+  //   { name: 'Microsoft Corp', code: 'MSFT', quantity: 34, price: 350.76, asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/02", time : "13:18" },
+  //   { name: 'Sphere 3D Corp', code: 'ANY', quantity: 85, price: 6.42,  asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/13", time : "10:10"},
+  //   { name: 'Lucid Group Inc Shs', code: 'LCID', quantity: 188, price: 22.33,  asset_class: "International market stocks", trade_type: "buy", date: "2021/06/18", time : "14:54" },
+  //   { name: 'Aliaba Group Holding Ltd ADR', code: 'BABA', quantity: 30, price: 175.5, asset_class: "International market stocks", trade_type: "buy", date: "2021/04/23", time : "14:22" },
+  //   { name: 'Tesla Inc', code: 'TSLA', quantity: 20, price: 657.65, asset_class: "Main index stocks", trade_type: "sell", date: "2021/08/03", time : "13:12"},
+  //   { name: 'Amazon.com Inc', code: 'AMZN', quantity: 12, price: 2354.34, asset_class: "Main index stocks", trade_type: "sell", date: "2021/05/28", time : "11:04" },
+  //   { name: 'Vinco Ventures', code: 'BBIG', quantity: 550, price: 5.56,  asset_class: "Small cap company stocks", trade_type: "sell", date: "2021/05/23", time : "10:07"},
+  //   { name: 'Microsoft Corp', code: 'MSFT', quantity: 34, price: 350.76, asset_class: "Small cap company stocks", trade_type: "sell", date: "2021/06/23", time : "9:45" },
+  //   { name: 'Tesla Inc', code: 'TSLA', quantity: 20, price: 650.65, asset_class: "Main index stocks", trade_type: "buy", date: "2021/09/03", time : "11:12"},
+  //   { name: 'Amazon.com Inc', code: 'AMZN', quantity: 12, price: 2154.34, asset_class: "Main index stocks", trade_type: "buy", date: "2021/08/28", time : "13:04" },
+  //   { name: 'Vinco Ventures', code: 'BBIG', quantity: 550, price: 4.56,  asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/23", time : "11:07"},
+  //   { name: 'Microsoft Corp', code: 'MSFT', quantity: 34, price: 310.76, asset_class: "Small cap company stocks", trade_type: "buy", date: "2021/07/26", time : "12:45" },
+  // ]
 
   export var bank_accounts: BankAccount[]=[
      { bank_name:'Bank Of America', balance:12421, account_number:123412341234},

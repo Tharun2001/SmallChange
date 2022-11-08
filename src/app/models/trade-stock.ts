@@ -6,5 +6,4 @@ export interface TradeStock {
     asset_class : string;
     trade_type : string;
     date: string; // YYYY/MM/DD
-    time: string; //24 hour clock- HH:MM
 }

@@ -39,10 +39,6 @@ export class TradeHistoryComponent implements OnInit {
   filter = '';
   stAmount = '';
   endAmount = '';
-  stDate = '';
-  endDate = '';
-  assestclass = '';
-  side = '';
   validChars = new RegExp('^[0-9.]*$');
   trades!: TradeStock[];
   fullTrades!: TradeStock[];
@@ -68,17 +64,6 @@ export class TradeHistoryComponent implements OnInit {
     });
     
   }
-  filterSubmit(){
-    this.trades = this.fullTrades.filter((trade) => {
-      console.log(trade.asset_class);
-      return trade.trade_type == this.selectedSide
-    });
-    this.dataSource = new MatTableDataSource(this.trades);
-    this.dataSource.paginator = this.paginator;
-
-    console.log(this.assestclass);
-  }
-  
   getTradeHistory(filter: string){
     this.filter = filter;
     if(filter == ''){
@@ -87,65 +72,76 @@ export class TradeHistoryComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.trades);
     this.dataSource.paginator = this.paginator;
   }
-
-  onAssetOptionSelection(option: string){
-    this.assestclass = option;
+  
+  filterSubmit(){
     this.trades = this.fullTrades.filter((trade) => {
       console.log(trade.asset_class);
-      return trade.asset_class == this.assestclass
+      return trade.trade_type == this.selectedSide
     });
     this.dataSource = new MatTableDataSource(this.trades);
     this.dataSource.paginator = this.paginator;
-
-    console.log(this.assestclass);
   }
 
-  onSideOptionSelection(option: string){
-    this.side = option;
-    this.trades = this.fullTrades.filter((trade) => {
-      return trade.trade_type == option;
-    });
-    this.dataSource = new MatTableDataSource(this.trades);
-    this.dataSource.paginator = this.paginator;
-    console.log(this.side);
-  }
 
-  amountSubmit(){
-    if(this.stAmount == '' || this.endAmount == ''){
-      this.error = 'empty-amount';
-      return;
-    }
-    if(!this.validChars.test(this.stAmount) || !this.validChars.test(this.endAmount)){
-      this.error = 'invalid-amount-chars';
-      return;
-    }
-    if(parseFloat(this.endAmount) < parseFloat(this.stAmount)){
-      this.error = 'invalid-amount';
-      return;
-    }
-    this.error = '';
-    console.log(this.stAmount, this.endAmount);
-    //form.resetForm();
-    this.trades = this.fullTrades.filter((trade) => {return trade.price > parseFloat(this.stAmount) && trade.price < parseFloat(this.endAmount)})
-    this.dataSource = new MatTableDataSource(this.trades);
-    this.dataSource.paginator = this.paginator;
-  }
 
-  dateSubmit(form: NgForm){
-    if(this.endDate == '' || this.stDate == ''){
-      this.error = 'empty-date';
-      return;
-    }
-    if(new Date(this.endDate).getTime() < new Date(this.stDate).getTime()){
-      this.error = 'invalid-date';
-      return;
-    }
-    this.error = '';
-    console.log(this.stDate, this.endDate);
-    this.trades = this.fullTrades.filter((trade) => {return new Date(trade.date).getTime() >= new Date(this.stDate).getTime()
-    && new Date(trade.date).getTime() <= new Date(this.endDate).getTime() });
-    this.dataSource = new MatTableDataSource(this.trades);
-    this.dataSource.paginator = this.paginator;
-  }
+  // onAssetOptionSelection(option: string){
+  //   this.assestclass = option;
+  //   this.trades = this.fullTrades.filter((trade) => {
+  //     console.log(trade.asset_class);
+  //     return trade.asset_class == this.assestclass
+  //   });
+  //   this.dataSource = new MatTableDataSource(this.trades);
+  //   this.dataSource.paginator = this.paginator;
+
+  //   console.log(this.assestclass);
+  // }
+
+  // onSideOptionSelection(option: string){
+  //   this.side = option;
+  //   this.trades = this.fullTrades.filter((trade) => {
+  //     return trade.trade_type == option;
+  //   });
+  //   this.dataSource = new MatTableDataSource(this.trades);
+  //   this.dataSource.paginator = this.paginator;
+  //   console.log(this.side);
+  // }
+
+  // amountSubmit(){
+  //   if(this.stAmount == '' || this.endAmount == ''){
+  //     this.error = 'empty-amount';
+  //     return;
+  //   }
+  //   if(!this.validChars.test(this.stAmount) || !this.validChars.test(this.endAmount)){
+  //     this.error = 'invalid-amount-chars';
+  //     return;
+  //   }
+  //   if(parseFloat(this.endAmount) < parseFloat(this.stAmount)){
+  //     this.error = 'invalid-amount';
+  //     return;
+  //   }
+  //   this.error = '';
+  //   console.log(this.stAmount, this.endAmount);
+  //   //form.resetForm();
+  //   this.trades = this.fullTrades.filter((trade) => {return trade.price > parseFloat(this.stAmount) && trade.price < parseFloat(this.endAmount)})
+  //   this.dataSource = new MatTableDataSource(this.trades);
+  //   this.dataSource.paginator = this.paginator;
+  // }
+
+  // dateSubmit(form: NgForm){
+  //   if(this.endDate == '' || this.stDate == ''){
+  //     this.error = 'empty-date';
+  //     return;
+  //   }
+  //   if(new Date(this.endDate).getTime() < new Date(this.stDate).getTime()){
+  //     this.error = 'invalid-date';
+  //     return;
+  //   }
+  //   this.error = '';
+  //   console.log(this.stDate, this.endDate);
+  //   this.trades = this.fullTrades.filter((trade) => {return new Date(trade.date).getTime() >= new Date(this.stDate).getTime()
+  //   && new Date(trade.date).getTime() <= new Date(this.endDate).getTime() });
+  //   this.dataSource = new MatTableDataSource(this.trades);
+  //   this.dataSource.paginator = this.paginator;
+  // }
   
 }

@@ -18,7 +18,7 @@ const routes = [
   { path: 'portfolio', component: ViewPortfolioComponent, canActivate: [IsLoggedInGuard]},
   { path: 'activity', component: TradeHistoryComponent},
   { path: 'buy', component: BuyComponentComponent, canActivate: [IsLoggedInGuard]},
-  //{ path: 'account', component: AccountComponent}
+  { path: 'account', component: AccountComponent}
 ]
 
 @NgModule({
