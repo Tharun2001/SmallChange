@@ -31,7 +31,7 @@ export class UserServiceService {
   }
 
   registerNewUser(user: User): Observable<number> {
-    console.log("Inside registerNewUser funtcion")
+    console.log("Inside registerNewUser function")
     let body = {"username" : `${user.username}`};
 
     let registerBody = {

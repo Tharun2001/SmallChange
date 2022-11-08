@@ -10,6 +10,7 @@ import { NotLoggedInGuard } from './guards/not-logged-in.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { BuyComponentComponent } from './buy-component/buy-component.component';
 import { AccountComponent } from './account/account.component';
+import { PreferencesComponent } from './preferences/preferences.component';
 
 
 const routes = [
@@ -18,7 +19,8 @@ const routes = [
   { path: 'portfolio', component: ViewPortfolioComponent, canActivate: [IsLoggedInGuard]},
   { path: 'activity', component: TradeHistoryComponent},
   { path: 'buy', component: BuyComponentComponent, canActivate: [IsLoggedInGuard]},
-  { path: 'account', component: AccountComponent}
+  { path: 'account', component: AccountComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'preferences', component: PreferencesComponent, canActivate: [IsLoggedInGuard]}
 ]
 
 @NgModule({

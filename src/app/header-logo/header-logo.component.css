@@ -1,3 +1,9 @@
+img {
+  height: 50px;
+  width: 50px;
+  float: right;
+  background-color: #568200;
+}
 .logo{
   box-sizing: content-box;
   font-family:'Fidelity sans', Arial, sans-serif;

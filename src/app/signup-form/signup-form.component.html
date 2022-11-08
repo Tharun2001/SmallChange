@@ -79,18 +79,6 @@
       </div>
     </div>
     <div class="signupform">
-      <label for="risk">Risk</label>
-      <input type="number" id="risk" formControlName="risk" min="1" max="5">
-      <div id="riskError" *ngIf="signupForm.controls['risk'].invalid && (signupForm.controls['risk'].dirty || signupForm.controls['risk'].touched)" class="alert">
-        <div *ngIf="signupForm.controls['risk'].hasError('required')
-        || signupForm.controls['risk'].hasError('min') || signupForm.controls['risk'].hasError('max')">
-          Risk must be between 1 and 5.
-        </div>
-      </div>
-    </div>
-
-
-    <div class="signupform">
       <button type="submit" id="loginbutton" [disabled]="!signupForm.valid">Sign Up</button>
     </div>
 
