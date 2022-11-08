@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, mergeMap, Observable, of, throwError } from 'rxjs';
+import { catchError, map, mergeMap, Observable, of, switchMap, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
@@ -30,13 +30,28 @@ export class UserServiceService {
     return this.loggedInUser != undefined;
   }
 
-  registerNewUser(user: User): Observable<User> {
-    const existinUser = this.users.find(u => u.email === user.email || u.username === user.username);
-    if (existinUser) {
-      return throwError(() => 'User with this email/username already present')
+  registerNewUser(user: User): Observable<number> {
+    console.log("Inside registerNewUser funtcion")
+    let body = {"username" : `${user.username}`};
+
+    let registerBody = {
+      "firstName" : `${user.firstName}`,
+      "lastName" : `${user.lastName}`,
+      "dob" : `${user.dob}`,
+      "email" : `${user.email}`,
+      "phone" : `${user.phone}`,
+      "username" : `${user.username}`,
+      "password" : `${user.password}`
     }
-    this.users.push(user);
-    return of(user)
+    return this.http.post<number>(this.url + "accounts", body)
+            .pipe(switchMap(count => {
+                if(count == 0) {
+                  return this.http.post<number>(this.url + "register", registerBody);
+                }
+                else {
+                  return of(0);
+                }
+            }));
   }
 
   logout() {
