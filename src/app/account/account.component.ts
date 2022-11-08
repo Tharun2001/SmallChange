@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
   name!: String;
   selected!: String;
   dialogRef!: any;
-  constructor(private accountSerive: AccountService,
+  constructor(private accountService: AccountService,
     public dialog: MatDialog, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class AccountComponent implements OnInit {
   }
   
   getBankAccounts(){
-    this.accountSerive.getBankAccounts().subscribe( (bank_accounts) =>{
+    this.accountService.getBankAccounts().subscribe( (bank_accounts) =>{
       this.bank_accounts = bank_accounts;
     }, (e) => {
 
@@ -56,7 +56,7 @@ export class AccountComponent implements OnInit {
   }
 
   getAccountDetails(){
-    this.accountSerive.getAccountDetails().subscribe({ next: (account) => {
+    this.accountService.getAccountDetails().subscribe({ next: (account) => {
       this.clientId = account.clientId;
       this.name = account.username;
       this.funds = account.funds;
@@ -80,7 +80,7 @@ export class AccountComponent implements OnInit {
   }
 
   deleteBankAccount(account_number: any){
-    this.accountSerive.deleteBankAccount(account_number).subscribe({ next: (result: any) => {
+    this.accountService.deleteBankAccount(account_number).subscribe({ next: (result: any) => {
       this.getBankAccounts();
       console.log(`Dialog result: ${result}`); // Pizza!
     }, error: (e) => {
@@ -112,7 +112,7 @@ export class AccountComponent implements OnInit {
     }
     let account_number: string = this.FundForm.get('accountNumber')?.value;
     let amount: string = this.FundForm.get('amount')?.value;
-    this.accountSerive.addFunds(account_number, parseFloat(amount)).subscribe({
+    this.accountService.addFunds(account_number, parseFloat(amount)).subscribe({
       next: (res) => {
           console.log(res);
           this.getAccountDetails();
@@ -131,7 +131,7 @@ export class AccountComponent implements OnInit {
     }
     let account_number: string = this.FundForm.get('accountNumber')?.value;
     let amount: string = this.FundForm.get('amount')?.value;
-    this.accountSerive.withDrawFunds(account_number, parseFloat(amount)).subscribe({
+    this.accountService.withDrawFunds(account_number, parseFloat(amount)).subscribe({
       next: (res) => {
           console.log(res);
           this.getAccountDetails();
