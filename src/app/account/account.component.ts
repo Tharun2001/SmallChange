@@ -42,6 +42,11 @@ export class AccountComponent implements OnInit {
     this.selected = 'funds';
   }
 
+  toggleOption(option: String){
+    this.selected = option;
+    console.log("btn clicked ",option );
+  }
+  
   getBankAccounts(){
     this.accountSerive.getBankAccounts().subscribe( (bank_accounts) =>{
       this.bank_accounts = bank_accounts;
@@ -51,22 +56,17 @@ export class AccountComponent implements OnInit {
   }
 
   getAccountDetails(){
-    this.accountSerive.getAccountDetails().subscribe((account) => {
+    this.accountSerive.getAccountDetails().subscribe({ next: (account) => {
       this.clientId = account.clientId;
       this.name = account.username;
       this.funds = account.funds;
-    }, (e) => {
+      console.log(this.funds);
+    }, error: (e) => {
 
-    })
-  }
-
-  toggleOption(option: String){
-    this.selected = option;
-    console.log("btn clicked ",option );
+    }})
   }
 
   addBankAccount(){
-
     this.dialogRef = this.dialog.open(AddBankAccountComponent, {
       data: {
         animal: 'panda',
@@ -80,10 +80,12 @@ export class AccountComponent implements OnInit {
   }
 
   deleteBankAccount(account_number: any){
-    this.accountSerive.deleteBankAccount(account_number).subscribe((result: any) => {
+    this.accountSerive.deleteBankAccount(account_number).subscribe({ next: (result: any) => {
       this.getBankAccounts();
       console.log(`Dialog result: ${result}`); // Pizza!
-    });
+    }, error: (e) => {
+      console.log(e);
+    }});
     console.log(account_number);
   }
 
@@ -110,13 +112,34 @@ export class AccountComponent implements OnInit {
     }
     let account_number: string = this.FundForm.get('accountNumber')?.value;
     let amount: string = this.FundForm.get('amount')?.value;
+    this.accountSerive.addFunds(account_number, parseFloat(amount)).subscribe({
+      next: (res) => {
+          console.log(res);
+          this.getAccountDetails();
+      },
+      error: () => {
 
-    this.funds = this.funds + parseFloat(amount);
-    //this.accountSerive.addFunds()
+      }
+  });
     this.FundForm.reset();
   }
 
   withdrawFunds(){
-    this.funds = this.funds - parseFloat(this.FundForm.get('amount')?.value);
+    if(!this.validateFundForm()){
+      this.FundForm.reset();
+      return;
+    }
+    let account_number: string = this.FundForm.get('accountNumber')?.value;
+    let amount: string = this.FundForm.get('amount')?.value;
+    this.accountSerive.withDrawFunds(account_number, parseFloat(amount)).subscribe({
+      next: (res) => {
+          console.log(res);
+          this.getAccountDetails();
+      },
+      error: (e) => {
+        console.log(e.message);
+      }
+    });
+  this.FundForm.reset();
   }
 }

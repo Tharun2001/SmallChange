@@ -5,32 +5,6 @@ h1{
     margin: 10px;
 }
 
-button{
-    font-family: "Fidelity Sans", Arial, sans-serif;
-    padding: 10px 10px;
-    background-color: #568200;
-    color: white;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 12px;
-    font-weight: bold;
-    width: 100px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-button:hover{
-    background-color:black
-}
-
-button.active{
-    background-color: black;
-}
-
-
-
 label{
     font-family: "Fidelity Sans", Arial, sans-serif;
     margin-left: 15px;
@@ -95,13 +69,27 @@ tr:nth-child(even) {
     color: white;
     background: black;
     font-size: 16px;
-    text-align: center;
-    padding: 10px 20px;
+    justify-content: center;
 }
 
 .mat-cell{
     font-size: 16px;
-    padding: 10px 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.mat-column-asset_class{
+    flex: 0 0 15%;
+}
+.mat-column-quantity{
+    flex: 0 0 10%;
+    text-align: center;
+}
+
+.mat-column-timestamp{
+    flex: 0 0 17%;
 }
 
 .mat-row:nth-child(even){background-color: #f2f2f2;}
@@ -109,6 +97,7 @@ tr:nth-child(even) {
 .main-container{
     display: flex;
     flex-direction: column;
+    align-items:center;
 }
 
 .filters-container{
@@ -121,4 +110,9 @@ tr:nth-child(even) {
 .filters-container div{
     margin-left: 25px;
     margin-right: 25px;
+}
+
+.filter-buttons-container button{
+    margin: 0 10px;
+    font-size: 16px;
 }

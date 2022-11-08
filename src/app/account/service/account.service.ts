@@ -67,18 +67,29 @@ export class AccountService {
   }
 
   addFunds(account_number: String, amount: Number){
-    return this.httpClient.post<Number>(this.url+"/accounts/addFunds", 
-    {
+    let body =  {
       'clientId': 'HVL491',
       'account_number': account_number,
       'amount': amount
-    },
-    {headers : new HttpHeaders({"Content-Type": "application/json"})})
+    };
+    console.log(body);
+    return this.httpClient.post<string>(this.url+"/accounts/addFunds", body,{
+      headers : new HttpHeaders({"Content-Type": "application/json"
+    })})
     .pipe(catchError(this.handleError));
   }
 
-  withDrawFunds(){
-
+  withDrawFunds(account_number: String, amount: Number){
+    let body =  {
+      'clientId': 'HVL491',
+      'account_number': account_number,
+      'amount': amount
+    };
+    console.log(body);
+    return this.httpClient.post<string>(this.url+"/accounts/withdrawFunds", body,{
+      headers : new HttpHeaders({"Content-Type": "application/json"
+    })})
+    .pipe(catchError(this.handleError));
   }
   
   handleError(error: HttpErrorResponse) {

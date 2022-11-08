@@ -24,14 +24,14 @@ describe('TradeHistoryComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
 
-  it('should retrieve trade records when all trades is selected', ()=> {
-    component.getTradeHistory('');
-    expect(component.trades.length).toBeGreaterThan(0);
-  })
+  // it('should retrieve trade records when all trades is selected', ()=> {
+  //   component.getTradeHistory('');
+  //   expect(component.trades.length).toBeGreaterThan(0);
+  // })
 
   // it('should display only main index asset trades', ()=> {
   //   let beforeData = component.trades;
