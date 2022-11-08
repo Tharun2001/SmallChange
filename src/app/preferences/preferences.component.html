@@ -1,0 +1,37 @@
+<div>
+    <app-header-logo></app-header-logo>
+    <app-navbar></app-navbar>
+
+    <header>Edit Preferences</header>
+    <div class="container">
+        <form  [formGroup]="preferencesForm" (ngSubmit)="submitPreferences()">
+
+        <div class="preferencesForm">
+            <label for="purpose">Investment Purpose</label>
+            <input type="text" id="purpose" formControlName="investmentPurpose">
+        </div>
+        <div class="preferencesForm">
+            <label for="risk">Risk Tolerance</label>
+            <p>(5-point scale: 1-Conservative, 2-Below Average, 3-Average, 4-Above Average, 5-Aggressive)</p>
+            <input type="number" max="5" min="1" id="risk" formControlName="riskTolerance">
+        </div>
+        <div class="preferencesForm">
+            <label for="incomeCategory">Income Category</label>
+            <select formControlName="incomeCategory">
+                <option *ngFor="let incomeCategory of categories">{{incomeCategory}}</option>
+            </select>
+        </div>
+        <div class="preferencesForm">
+            <label for="investmentLength">Length of Investment</label>
+            <select formControlName="invLength">
+                <option *ngFor="let invLength of invLengths">{{invLength}}</option>
+            </select>
+        </div>
+        <div class="preferencesForm">
+            <button type="submit" id="editPreferencesBtn">Submit</button>
+          </div>
+          </form>
+    </div>
+
+    <app-footer-bar></app-footer-bar>
+</div>

@@ -30,7 +30,6 @@ export class SignupFormComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(24), Validators.pattern("^[A-Za-z0-9_-]*$")]],
       cpassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(24), Validators.pattern("^[A-Za-z0-9_-]*$")]],
       dob: ['', [Validators.required]],
-      risk: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
       phone: ['', [Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}")]]
     },
       {
@@ -49,11 +48,8 @@ export class SignupFormComponent implements OnInit {
       this.signupForm.get('username')?.value,
       this.signupForm.get('password')?.value
     );
-    console.log("Inside signup function wit user = " + user);
+    
     this.userService.registerNewUser(user);
-
-
-
     (this.userService.registerNewUser(user).pipe(first())
       .subscribe({
           next: (res) => {

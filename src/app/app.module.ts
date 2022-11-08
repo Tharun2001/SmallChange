@@ -35,6 +35,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { SecuritiesComponent } from './securities/securities.component';
 import { BuyTradeComponent } from './buy-trade/buy-trade.component';
+import { PreferencesComponent } from './preferences/preferences.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { BuyTradeComponent } from './buy-trade/buy-trade.component';
     AccountComponent,
     AddBankAccountComponent,
     SecuritiesComponent,
-    BuyTradeComponent
+    BuyTradeComponent,
+    PreferencesComponent
   ],
   imports: [
     BrowserModule,
