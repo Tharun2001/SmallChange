@@ -46,10 +46,10 @@
             <table>
                 <tr>
                     <td rowspan="2" style="width: 70px; text-align:center; font-weight: bold;">Cost Range</td>
-                    <td><input placeholder="Start amount" name="stAmount" type="text" [(ngModel)]="stAmount"></td>
+                    <td><input placeholder="Start amount" name="stAmount" type="number" [(ngModel)]="stAmount"></td>
                 </tr>
                 <tr>
-                    <td> <input placeholder="End amount" name="endAmount" type="text" [(ngModel)]="endAmount"></td>
+                    <td> <input placeholder="End amount" name="endAmount" type="number" [(ngModel)]="endAmount"></td>
                 </tr>
             </table>
             <div class="error" *ngIf="error == 'empty-amount'">*Invalid-amount(s) are empty.</div>
@@ -98,7 +98,7 @@
         
             <ng-container matColumnDef="cost">
                 <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.quantity*row.price}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.quantity*row.price | number: '1.2-2'}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="timestamp">

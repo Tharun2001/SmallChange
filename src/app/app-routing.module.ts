@@ -20,7 +20,7 @@ const routes = [
   { path: 'portfolio', component: ViewPortfolioComponent,},
   { path: 'activity', component: TradeHistoryComponent},
   { path: 'buy', component: SecuritiesComponent},
-  { path: 'account', component: AccountComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'account', component: AccountComponent},
   { path: 'preferences', component: PreferencesComponent}
 ]
 

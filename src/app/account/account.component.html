@@ -44,9 +44,8 @@
                     </mat-form-field>
                     <mat-form-field class="amount-input" appearance="fill">
                         <mat-label>Amount</mat-label>
-                        <input matInput [(ngModel)]="amount" formControlName="amount">
+                        <input type="number" matInput [(ngModel)]="amount" formControlName="amount">
                         <mat-error *ngIf="FundForm.controls['amount'].hasError('required')">Cannot be empty</mat-error>
-                        <mat-error *ngIf="FundForm.controls['amount'].hasError('pattern')">Invalid amount</mat-error>
                     </mat-form-field>
                     </form>
                 </div>

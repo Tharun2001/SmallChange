@@ -39,8 +39,8 @@ export class TradeHistoryComponent implements OnInit {
 
   error = "";
   filter = '';
-  stAmount = '';
-  endAmount = '';
+  stAmount!: number;
+  endAmount!: number;
   validChars = new RegExp('^[0-9.]*$');
   trades!: TradeStock[];
   fullTrades!: TradeStock[];
@@ -117,11 +117,11 @@ export class TradeHistoryComponent implements OnInit {
     }
 
         
-    let start_amount = parseFloat(this.stAmount);
-    let end_amount = parseFloat(this.endAmount);
-
-    if(this.stAmount != '' || this.endAmount != ''){
-      if(this.amountValid() && !isNaN(start_amount) && !isNaN(end_amount)){
+    let start_amount = this.stAmount;
+    let end_amount = this.endAmount;
+    console.log("amount", start_amount, end_amount)
+    if(start_amount != null || end_amount != null){
+      if(this.amountValid()) {
         console.log("cost filtering.....")
         this.trades = this.trades.filter((trade) => {
           let cost = trade.quantity*trade.price;
@@ -146,8 +146,8 @@ export class TradeHistoryComponent implements OnInit {
     this.selectedAssetClasses = null;
     this.selectedSide = null;
     this.dateRange.reset();
-    this.stAmount = '';
-    this.endAmount = '';
+    this.stAmount = 0;
+    this.endAmount = 0;
     this.error = '';
 
     this.trades = this.fullTrades;
@@ -156,15 +156,11 @@ export class TradeHistoryComponent implements OnInit {
   }
 
   amountValid(){
-    if(this.stAmount == '' || this.endAmount == ''){
+    if(this.stAmount == null || this.endAmount == null){
       this.error = 'empty-amount';
       return false;
     }
-    if(!this.validChars.test(this.stAmount) || !this.validChars.test(this.endAmount)){
-      this.error = 'invalid-amount-chars';
-      return false;
-    }
-    if(parseFloat(this.endAmount) < parseFloat(this.stAmount)){
+    if(this.endAmount < this.stAmount){
       this.error = 'invalid-amount';
       return false;
     }

@@ -18,7 +18,7 @@ export class AccountComponent implements OnInit {
   selectedAccountNumber!: String;
 
   accountError!:String;
-  amount!: String;
+  amount!: number;
   amountError!: String;
 
 
@@ -99,9 +99,6 @@ export class AccountComponent implements OnInit {
       return false;
     }
 
-    if(parseFloat(this.FundForm.get('amount')?.value) == null){
-      return false;
-    }
     return true;
   }
 
@@ -111,8 +108,8 @@ export class AccountComponent implements OnInit {
       return;
     }
     let account_number: string = this.FundForm.get('accountNumber')?.value;
-    let amount: string = this.FundForm.get('amount')?.value;
-    this.accountService.addFunds(account_number, parseFloat(amount)).subscribe({
+    let amount: number = this.FundForm.get('amount')?.value;
+    this.accountService.addFunds(account_number, amount).subscribe({
       next: (res) => {
           console.log(res);
           this.getAccountDetails();
@@ -130,8 +127,8 @@ export class AccountComponent implements OnInit {
       return;
     }
     let account_number: string = this.FundForm.get('accountNumber')?.value;
-    let amount: string = this.FundForm.get('amount')?.value;
-    this.accountService.withDrawFunds(account_number, parseFloat(amount)).subscribe({
+    let amount: number = this.FundForm.get('amount')?.value;
+    this.accountService.withDrawFunds(account_number, amount).subscribe({
       next: (res) => {
           console.log(res);
           this.getAccountDetails();
