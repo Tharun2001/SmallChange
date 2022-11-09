@@ -81,7 +81,6 @@ export class SellTradeComponent implements OnInit {
       this.accountService.getBankAccounts().subscribe( { next: (bank_accounts) =>{
         this.bank_accounts = bank_accounts;
       }, error: (e) => {
-        
       }})
     }
 }

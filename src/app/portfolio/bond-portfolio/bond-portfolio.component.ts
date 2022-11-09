@@ -54,6 +54,7 @@ export class BondPortfolioComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       this.getBonds();
+      this.updateFunds.emit();
       this.snackbar.open("Sell order : " + result.security.code +  " ("+result.sellQuantity +" qty) has been sold" , "OK");
       console.log('The dialog was closed', result);
     });

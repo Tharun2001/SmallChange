@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from "@angular/router/testing";
 import { HeaderLogoComponent } from './header-logo.component';
 
 describe('HeaderLogoComponent', () => {
@@ -9,6 +9,8 @@ describe('HeaderLogoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderLogoComponent],
+      imports: [RouterTestingModule.withRoutes([]),
+      ]
     }).compileComponents();
   });
 
