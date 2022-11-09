@@ -46,7 +46,7 @@ export class AccountComponent implements OnInit {
     this.selected = option;
     console.log("btn clicked ",option );
   }
-  
+
   getBankAccounts(){
     this.accountService.getBankAccounts().subscribe( (bank_accounts) =>{
       this.bank_accounts = bank_accounts;
@@ -76,7 +76,7 @@ export class AccountComponent implements OnInit {
       this.getBankAccounts();
       console.log(`Dialog result: ${result.bank_name} ${result.account_number}`); // Pizza!
     });
-    
+
   }
 
   deleteBankAccount(account_number: any){

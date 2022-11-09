@@ -3,8 +3,10 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 import { LoginFormComponent } from './login-form.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -14,7 +16,7 @@ describe('LoginFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [LoginFormComponent],
       imports: [
-        FormsModule
+        FormsModule, HttpClientTestingModule, RouterTestingModule
       ]
     })
       .overrideComponent(LoginFormComponent, {

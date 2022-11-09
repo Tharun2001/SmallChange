@@ -7,10 +7,10 @@ import { StockPortfolioComponent } from './stock-portfolio/stock-portfolio.compo
 
 @NgModule({
   declarations: [
-    ViewPortfolioComponent,
+    //ViewPortfolioComponent,
     BondPortfolioComponent,
     MfPortfolioComponent,
-    StockPortfolioComponent
+    //StockPortfolioComponent
   ],
   imports: [
     CommonModule,

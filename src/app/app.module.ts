@@ -15,11 +15,11 @@ import { ViewPortfolioComponent } from './portfolio/view-portfolio/view-portfoli
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { TradeHistoryComponent } from './trade-history/trade-history.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { BuyComponentComponent } from './buy-component/buy-component.component';
 import { SellTradeComponent } from './sell-trade/sell-trade.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountComponent } from './account/account.component';
 import { AddBankAccountComponent } from './account/add-bank-account/add-bank-account.component';
@@ -81,7 +81,8 @@ import { PreferencesComponent } from './preferences/preferences.component';
     MatButtonModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [HttpClient,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
