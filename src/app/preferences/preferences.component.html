@@ -8,7 +8,7 @@
 
         <div class="preferencesForm">
             <label for="purpose">Investment Purpose</label>
-            <input type="text" id="purpose" formControlName="investmentPurpose">
+            <input type="text" id="purpose" formControlName="investmentPurpose" >
         </div>
         <div class="preferencesForm">
             <label for="risk">Risk Tolerance</label>
@@ -35,6 +35,8 @@
           <div class="preferencesForm">
               <button type="submit" id="editPreferencesBtn" [disabled]="disableButton">Save</button>
           </div>
+
+          <div *ngIf="submitted == true" class="goodAlert">Preferences Saved! </div>
         </div>
       </form>
     </div>
