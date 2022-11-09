@@ -24,6 +24,8 @@ export class ViewPortfolioComponent implements OnInit {
     this.funds = 0;
     this.getSecurities();
     this.getAccountDetails();
+    console.log(localStorage.getItem('username'));
+    console.log(localStorage.getItem('clientId'));
   }
 
   getAccountDetails(){

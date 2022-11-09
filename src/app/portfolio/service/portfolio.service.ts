@@ -14,7 +14,7 @@ export class PortfolioService {
   getSecurities(): Observable<SecurityHolding[]>{
     return this.httpClient.post<SecurityHolding[]>(this.url,
       {
-        'clientId': 'HVL491'
+        'clientId': localStorage.getItem('clientId')
       },
       {headers : new HttpHeaders({"Content-Type": "application/json"})})
     .pipe(catchError(this.handleError));

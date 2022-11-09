@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { AccountService } from '../account/service/account.service';
 import { UserServiceService } from '../services/user-service.service';
 @Component({
   selector: 'app-login-form',
@@ -12,7 +13,8 @@ export class LoginFormComponent implements OnInit {
   password: string = '';
   forbiddenChars = new RegExp('^[A-Za-z0-9_-]*$');
   invalidCreds : boolean = false;
-  constructor(private userService: UserServiceService, private router: Router) { }
+  constructor(private userService: UserServiceService, private router: Router,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
     var usernameFeild = document
@@ -62,7 +64,16 @@ export class LoginFormComponent implements OnInit {
       .subscribe({
           next: (res) => {
               if(res != null) {
-                this.router.navigateByUrl('/portfolio');
+                console.log(res);
+                console.log("from login", localStorage.getItem('username'));
+                this.accountService.getAccountDetails().subscribe({
+                  next: (res)=>{ 
+                    console.log('getting account....', res);
+                    localStorage.setItem('clientId', res.clientId); 
+                    this.router.navigateByUrl('/portfolio');
+                    
+                }})
+               
               }
               else {
                 this.invalidCreds = true;

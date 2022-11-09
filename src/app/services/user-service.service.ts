@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, mergeMap, Observable, of, switchMap, throwError } from 'rxjs';
 import { User } from '../models/user';
+import { AccountDetail } from '../models/AccountDetail';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
   users: User[] = [];
-  private loggedInUser?: User
+  private loggedInUser?: User;
 
   constructor(private http: HttpClient) {
     this.loggedInUser = undefined;
@@ -22,16 +22,22 @@ export class UserServiceService {
   return this.http.post<User>(this.url + "login", body)
             .pipe(map(user => {
                 this.loggedInUser = user;
+                console.log("service", user); 
+                localStorage.setItem('username', user.username);
+                console.log("Local storage", localStorage.getItem('username'));
                 return user;
             }));
   }
 
+
   isLoggedIn(): boolean {
-    return this.loggedInUser != undefined;
+    console.log(this.loggedInUser);
+    return localStorage.getItem('username') != null;
+    // return this.loggedInUser != undefined;
   }
 
   registerNewUser(user: User): Observable<number> {
-    console.log("Inside registerNewUser funtcion")
+    console.log("Inside registerNewUser function")
     let body = {"username" : `${user.username}`};
 
     let registerBody = {
@@ -56,11 +62,8 @@ export class UserServiceService {
 
   logout() {
     this.loggedInUser = undefined
+    localStorage.clear();
   }
-
-  // getLoginUserId(): number | undefined {
-  //   return this.loggedInUser?.clientId;
-  // }
 
   getLoginUserEmail(): string | undefined {
     return this.loggedInUser?.email;

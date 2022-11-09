@@ -17,11 +17,11 @@ import { PreferencesComponent } from './preferences/preferences.component';
 const routes = [
   { path: '', component: LoginPageComponent, canActivate: [NotLoggedInGuard]},
   { path: 'signup', component: SignupPageComponent, canActivate: [NotLoggedInGuard]},
-  { path: 'portfolio', component: ViewPortfolioComponent,},
-  { path: 'activity', component: TradeHistoryComponent},
-  { path: 'buy', component: SecuritiesComponent},
-  { path: 'account', component: AccountComponent},
-  { path: 'preferences', component: PreferencesComponent}
+  { path: 'portfolio', component: ViewPortfolioComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'activity', component: TradeHistoryComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'buy', component: SecuritiesComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'account', component: AccountComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'preferences', component: PreferencesComponent, canActivate: [IsLoggedInGuard]}
 ]
 
 @NgModule({

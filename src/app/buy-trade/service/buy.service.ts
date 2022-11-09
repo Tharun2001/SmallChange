@@ -13,7 +13,7 @@ export class BuyService {
   buyTrade(sid: number, qty: number, price: number): Observable<Number>{
     return this.httpClient.post<Number>(this.url,
       {
-        "clientId" : "HVL491",
+        "clientId" : localStorage.getItem('clientId'),
         "trade_type": "B",
         "quantity": qty,
         "price": price,

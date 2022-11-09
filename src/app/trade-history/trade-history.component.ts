@@ -146,10 +146,10 @@ export class TradeHistoryComponent implements OnInit {
     this.selectedAssetClasses = null;
     this.selectedSide = null;
     this.dateRange.reset();
-    this.stAmount = 0;
-    this.endAmount = 0;
     this.error = '';
-
+    (document.getElementById("start-amount") as HTMLInputElement).value = "";
+    (document.getElementById("end-amount") as HTMLInputElement).value = "";
+    
     this.trades = this.fullTrades;
     this.dataSource = new MatTableDataSource(this.fullTrades);
     this.dataSource.paginator = this.paginator;

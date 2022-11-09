@@ -45,11 +45,11 @@
         <div class="amount-options">
             <table>
                 <tr>
-                    <td rowspan="2" style="width: 70px; text-align:center; font-weight: bold;">Cost Range</td>
-                    <td><input placeholder="Start amount" name="stAmount" type="number" [(ngModel)]="stAmount"></td>
+                    <td rowspan="2" style="width: 70px; text-align:center; font-weight: bold; font-size: 13px;">Cost Range</td>
+                    <td><input id="start-amount" placeholder="Start amount" name="stAmount" type="number" [(ngModel)]="stAmount"></td>
                 </tr>
                 <tr>
-                    <td> <input placeholder="End amount" name="endAmount" type="number" [(ngModel)]="endAmount"></td>
+                    <td> <input id="end-amount" placeholder="End amount" name="endAmount" type="number" [(ngModel)]="endAmount"></td>
                 </tr>
             </table>
             <div class="error" *ngIf="error == 'empty-amount'">*Invalid-amount(s) are empty.</div>
