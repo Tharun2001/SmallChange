@@ -2,7 +2,9 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ConfirmPasswordValidator } from '../match-password.validator';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 import { SignupFormComponent } from './signup-form.component';
 
@@ -14,7 +16,7 @@ describe('SignupFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SignupFormComponent ],
       imports: [
-        ReactiveFormsModule, FormsModule
+        ReactiveFormsModule, FormsModule, RouterTestingModule, HttpClientTestingModule
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
@@ -51,11 +53,11 @@ describe('SignupFormComponent', () => {
     expect(phone.valid).toBeFalsy();
   });
 
-  it('should show invalid risk', () => {
-    let risk = component.signupForm.controls['risk'];
-    risk.setValue('7');
-    expect(risk.valid).toBeFalsy();
-  });
+  // xit('should show invalid risk', () => {
+  //   let risk = component.signupForm.controls['risk'];
+  //   risk.setValue('7');
+  //   expect(risk.valid).toBeFalsy();
+  // });
 
   it('should accept details when all values are correct', () => {
     component.signupForm.controls['email'].setValue('test@gmail.com');
@@ -63,9 +65,9 @@ describe('SignupFormComponent', () => {
     component.signupForm.controls['lastName'].setValue('Test');
     component.signupForm.controls['password'].setValue('Test-1234');
     component.signupForm.controls['cpassword'].setValue('Test-1234');
-    component.signupForm.controls['dob'].setValue('03/01/2000');
+    component.signupForm.controls['dob'].setValue('03-01-2000');
     component.signupForm.controls['phone'].setValue('123-456-7890');
-    component.signupForm.controls['risk'].setValue('3');
+    component.signupForm.controls['username'].setValue('TestUser');
 
     expect(component.signupForm.valid).toBeTruthy();
   });
@@ -77,7 +79,7 @@ describe('SignupFormComponent', () => {
     component.signupForm.controls['cpassword'].setValue('Test-1234');
     component.signupForm.controls['dob'].setValue('03/01/2000');
     component.signupForm.controls['phone'].setValue('123-456-790');
-    component.signupForm.controls['risk'].setValue('3');
+    //component.signupForm.controls['risk'].setValue('3');
 
     expect(component.signupForm.valid).toBeFalsy();
   })

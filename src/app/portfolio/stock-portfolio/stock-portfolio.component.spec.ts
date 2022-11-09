@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StockPortfolioComponent } from './stock-portfolio.component';
 
 describe('StockPortfolioComponent', () => {
@@ -7,6 +10,7 @@ describe('StockPortfolioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MatDialogModule, MatSnackBarModule, HttpClientTestingModule],
       declarations: [ StockPortfolioComponent ]
     })
     .compileComponents();

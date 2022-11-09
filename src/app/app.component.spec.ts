@@ -4,13 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing'
 import { NO_ERRORS_SCHEMA } from '@angular/compiler';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [
-        ReactiveFormsModule, RouterTestingModule
+        ReactiveFormsModule, RouterTestingModule, MatDialogModule
       ],
     }).compileComponents();
   });

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { PreferencesComponent } from './preferences.component';
 
@@ -8,7 +10,13 @@ describe('PreferencesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PreferencesComponent ]
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations: [ PreferencesComponent ],
+      providers:
+      [{
+        provide: MatDialogRef,
+        useValue: {}
+      }]
     })
     .compileComponents();
   });

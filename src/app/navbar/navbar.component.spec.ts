@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 import { NavbarComponent } from './navbar.component';
 
@@ -9,6 +11,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [ NavbarComponent ]
     })
     .compileComponents();
@@ -24,8 +27,8 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain 4 navigation items', () => {
-    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(4);
+  it('should contain 5 navigation items', () => {
+    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(5);
   })
 
   it(('should contain nav element'), ()=> {
