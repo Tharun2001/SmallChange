@@ -11,7 +11,7 @@ export class LoginFormComponent implements OnInit {
   username: string = '';
   password: string = '';
   forbiddenChars = new RegExp('^[A-Za-z0-9_-]*$');
-
+  invalidCreds : boolean = false;
   constructor(private userService: UserServiceService, private router: Router) { }
 
   ngOnInit(): void {
@@ -60,8 +60,13 @@ export class LoginFormComponent implements OnInit {
     (this.userService.authenticateUser(window.btoa(this.username),
       window.btoa(this.password))).pipe(first())
       .subscribe({
-          next: () => {
-              this.router.navigateByUrl('/portfolio');
+          next: (res) => {
+              if(res != null) {
+                this.router.navigateByUrl('/portfolio');
+              }
+              else {
+                this.invalidCreds = true;
+              }
           }
       });
 }

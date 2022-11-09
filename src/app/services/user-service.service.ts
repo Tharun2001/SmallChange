@@ -14,7 +14,7 @@ export class UserServiceService {
   constructor(private http: HttpClient) {
     this.loggedInUser = undefined;
   }
-  private url = "http://localhost:4200/api/"
+  private url = "http://localhost:8080/api/"
 
   authenticateUser(username: string, password: string): Observable<User> {
     let body = {"username" : `${username}`, "password" : `${password}`};

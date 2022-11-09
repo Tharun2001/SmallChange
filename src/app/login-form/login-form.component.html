@@ -25,6 +25,8 @@
     <button type="button" id="loginbutton" (click)="login()">Log In</button>
   </div>
 
+  <div *ngIf="invalidCreds == true" class="alert">Invalid Username or Password! </div>
+
   <div class="forgotPassword">
     <a href="">Forgot your password?</a>
   </div>

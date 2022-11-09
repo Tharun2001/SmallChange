@@ -11,7 +11,7 @@ export class BuyService {
   constructor(private httpClient:HttpClient) { }
 
   buyTrade(sid: number, qty: number, price: number): Observable<Number>{
-    return this.httpClient.post<Number>(this.url, 
+    return this.httpClient.post<Number>(this.url,
       {
         "clientId" : "HVL491",
         "trade_type": "B",
@@ -26,7 +26,7 @@ export class BuyService {
   handleError(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
-    } 
+    }
     else{
       console.error(`Backend returned code ${error.status}, `+`body was: ${error.error}`);
     }

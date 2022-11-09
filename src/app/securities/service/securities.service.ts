@@ -10,7 +10,7 @@ export class SecuritiesService {
 
   url: string = "http://localhost:8080/api/securities";
   constructor(private httpClient:HttpClient) { }
-  
+
   getSecurities(): Observable<SecurityList[]>{
     return this.httpClient.get<SecurityList[]>(this.url)
       .pipe(catchError(this.handleError));
@@ -19,7 +19,7 @@ export class SecuritiesService {
   handleError(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
-    } 
+    }
     else{
       console.error(`Backend returned code ${error.status}, `+`body was: ${error.error}`);
     }

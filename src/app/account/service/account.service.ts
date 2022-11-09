@@ -12,9 +12,9 @@ export class AccountService {
   url: string = "http://localhost:8080/api";
   
   constructor(private httpClient:HttpClient) { }
-  
+
   getBankAccounts(): Observable<BankAccount[]>{
-    return this.httpClient.post<BankAccount[]>(this.url+"/bankAccounts", 
+    return this.httpClient.post<BankAccount[]>(this.url+"/bankAccounts",
       {
         'clientId': 'HVL491'
       },
@@ -27,7 +27,7 @@ export class AccountService {
     let min = 50000000;
     let balance = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    return this.httpClient.post<Number>(this.url+"/bankAccounts/addAccount", 
+    return this.httpClient.post<Number>(this.url+"/bankAccounts/addAccount",
       {
         'clientId': 'HVL491',
         'account_number': account_number,
@@ -39,7 +39,7 @@ export class AccountService {
   }
 
   deleteBankAccount(account_number: String): Observable<Number>{
-    return this.httpClient.post<Number>(this.url+"/bankAccounts/deleteAccount", 
+    return this.httpClient.post<Number>(this.url+"/bankAccounts/deleteAccount",
     {
       'clientId': 'HVL491',
       'account_number': account_number,
@@ -47,9 +47,9 @@ export class AccountService {
     {headers : new HttpHeaders({"Content-Type": "application/json"})})
   .pipe(catchError(this.handleError));
   }
-  
+
   getAccountDetails(): Observable<AccountDetail>{
-    return this.httpClient.post<AccountDetail>(this.url+"/accounts/getDetails", 
+    return this.httpClient.post<AccountDetail>(this.url+"/accounts/getDetails",
       {
         "username":"Ethan"
       },
@@ -58,7 +58,7 @@ export class AccountService {
   }
 
   getAccountFunds(): Observable<Number>{
-    return this.httpClient.post<Number>(this.url+"/accounts/getFunds", 
+    return this.httpClient.post<Number>(this.url+"/accounts/getFunds",
       {
         'clientId': 'HVL491'
       },
@@ -91,11 +91,11 @@ export class AccountService {
     })})
     .pipe(catchError(this.handleError));
   }
-  
+
   handleError(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
-    } 
+    }
     else{
       console.error(`Backend returned code ${error.status}, `+`body was: ${error.error}`);
     }
