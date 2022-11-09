@@ -7,6 +7,23 @@
 table td, th{ 
     padding: 8px 10px;
  }
+.bank-form{
+    margin-top: 20px;
+}
+input {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: "Fidelity Sans", Arial, sans-serif;
+    font-weight: bold;
+}
 
 button{
     border: none;
@@ -16,8 +33,16 @@ button{
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    margin: 10px 8px;
+    margin: 20px 8px;
     cursor: pointer;
+}
+
+.error{
+    font-family: "Fidelity Sans", Arial, sans-serif;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+    color: red;
 }
 
 button.add-bank-btn{

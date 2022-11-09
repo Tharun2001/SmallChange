@@ -1,11 +1,16 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 1em;
   }
   
+  th{
+    background-color: rgba(0, 0, 0, 0.849);
+    color: white;
+  }
+
   td, th {
     border: 0.1px solid #dddddd83;
     text-align: center;
@@ -65,7 +70,9 @@ table {
   }
 
   button {
-    width: 100%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     border: none;
     display: block;
     box-sizing: border-box;

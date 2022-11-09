@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BondHolding } from 'src/app/models/bond-holding';
-import { dummy_data_bonds } from 'src/app/models/mock-data';
 import { SecurityHolding } from 'src/app/models/security-holding';
 import { SellTradeComponent } from 'src/app/sell-trade/sell-trade.component';
 import { PortfolioService } from '../service/portfolio.service';
@@ -19,7 +17,7 @@ export class BondPortfolioComponent implements OnInit {
   invested_amount: number = 0;
   current_amount: number = 0;
   assest_class = ['Government bonds', 'Corporate bonds'];
-  @Output("updateFunds") updateFunds: EventEmitter<any> = new EventEmitter();
+  @Output("updateOverview") updateOverview: EventEmitter<any> = new EventEmitter();
   
   constructor(private dialog: MatDialog,
     private snackbar: MatSnackBar, private portfolioService: PortfolioService) { }
@@ -31,6 +29,8 @@ export class BondPortfolioComponent implements OnInit {
     this.invested_amount = 0;
     this.current_amount = 0;
     this.getBonds();
+    console.log("Current amount", this.current_amount, "Invested", this.invested_amount);
+    console.log(this.current_amount > this.invested_amount);
   }
 
   getBonds(){
@@ -39,6 +39,8 @@ export class BondPortfolioComponent implements OnInit {
       this.data = holdings.filter((holding) => {
         return this.assest_class.includes(holding.asset_class);
       });
+      this.invested_amount = 0;
+      this.current_amount = 0;
       for (var i = 0; i < this.data.length; i++) {
         this.invested_amount += this.data[i].invested_amount;
         this.current_amount += (this.data[i].ltp * this.data[i].quantity)
@@ -54,10 +56,15 @@ export class BondPortfolioComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       this.getBonds();
-      this.updateFunds.emit();
+      this.updateOverview.emit();
       this.snackbar.open("Sell order : " + result.security.code +  " ("+result.sellQuantity +" qty) has been sold" , "OK");
       console.log('The dialog was closed', result);
     });
   }
+
+  public RoundValue(value: number): number {
+    return Math.round(value*100)/100;
+ }
+ 
 
 }

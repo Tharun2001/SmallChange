@@ -13,7 +13,7 @@ import { PortfolioService } from '../service/portfolio.service';
 export class StockPortfolioComponent implements OnInit {
   assest_class = ['Main Index', 'Small cap company stocks', 'International market stocks'];
   @Input() eventTriggered!: boolean;
-  @Output("updateFunds") updateFunds: EventEmitter<any> = new EventEmitter();
+  @Output("updateOverview") updateOverview: EventEmitter<any> = new EventEmitter();
   
   data!: SecurityHolding[];
   invested_amount: number = 0;
@@ -39,6 +39,8 @@ export class StockPortfolioComponent implements OnInit {
   getStock(){
     this.portfolioService.getSecurities().subscribe({ next: (holdings) => {
       console.log(holdings)
+      this.invested_amount = 0;
+      this.current_amount = 0;
       this.data = holdings.filter((holding) => {
         return this.assest_class.includes(holding.asset_class);
       });
@@ -46,6 +48,9 @@ export class StockPortfolioComponent implements OnInit {
         this.invested_amount += this.data[i].invested_amount;
         this.current_amount += (this.data[i].ltp * this.data[i].quantity)
       }
+      console.log("holdings...")
+      console.log(holdings);
+      console.log(this.invested_amount, this.current_amount)
     }, error: () => {
 
     }})
@@ -57,12 +62,18 @@ export class StockPortfolioComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+     
+      this.updateOverview.emit();
       this.getStock();
-      this.updateFunds.emit();
       this.snackbar.open("Sell order : " + result.security.code +  " ("+result.sellQuantity +" qty) has been sold" , "OK");
       console.log('The dialog was closed', result);
+      
     });
   }
+
+  public RoundValue(value: number): number {
+    return Math.round(value*100)/100;
+ }
 }
 
 

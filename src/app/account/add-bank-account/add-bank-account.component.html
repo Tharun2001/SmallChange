@@ -1,25 +1,28 @@
 
 <div class="main-container">
     <h3>Bank Account Details</h3>
-    <table>
-        <tr>
-            <td><label>Account number: </label></td>
-            <td> <input type="text" id="account_number" [(ngModel)]="account_number"></td>
-            <div *ngIf="accountError">
-                *Invalid account number.
-            </div>
-        </tr>
-        <tr>
-            <td><label>Bank name: </label></td>
-            <td><input type="text" id="bank_name"  [(ngModel)]="bank_name"></td>
-            <div *ngIf="bankNameError">
-                *Invalid bank name.
-            </div>
-        </tr>
-    </table>
+
+    <div class="bank-form">
+        <label for="">Account number: </label>
+        <input type="text" id="account_number" [(ngModel)]="account_number">
+    </div>
+    <div *ngIf="accountError" class="error">
+        *Invalid account number.
+    </div>
+    <div class="bank-form">
+        <label>Bank name: </label>
+        <input type="text" id="bank_name"  [(ngModel)]="bank_name">
+    </div>
+    <div *ngIf="bankNameError" class="error">
+        *Invalid bank name.
+    </div>
+    <div *ngIf="existsError" class="error">
+        *Account is invalid.
+    </div>
     <div>
         <button class="cancel-bank-btn" (click)="cancel()">Cancel</button>
         <button class="add-bank-btn" (click)="confirm()">Confirm</button>
     </div>
+
     
 </div>

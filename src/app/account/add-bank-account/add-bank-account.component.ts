@@ -12,6 +12,7 @@ export class AddBankAccountComponent implements OnInit {
   bank_name!: String;
   bankNameError!: boolean;
   accountError!: boolean;
+  existsError!: boolean;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
@@ -21,23 +22,34 @@ export class AddBankAccountComponent implements OnInit {
   }
 
   confirm() {
-    if(this.account_number == null){
+    this.accountError = false;
+    this.bankNameError = false;
+    this.existsError = false;
+    
+    console.log(this.account_number, this.bank_name);
+    if(this.account_number == null || this.account_number == ''){
       this.accountError = true;
+      console.log("acct error.....");
       return;
     }
 
-    if(this.bank_name == null){
+    if(this.bank_name == null || this.bank_name == ''){
+      console.log("name error.....");
       this.bankNameError = true;
       return;
     }
     this.accountSerive.addBankAccount(this.account_number, this.bank_name)
     .subscribe( (res) => {
+      console.log("response from server..");
         console.log(res);
+        this.dialogRef.close({account_number: this.account_number,
+          bank_name: this.bank_name});
     }, (e) =>{
-
+        console.log("bank account error from server..");
+        console.log(e)
+        this.existsError = true;
     });
-    this.dialogRef.close({account_number: this.account_number,
-    bank_name: this.bank_name});
+
   }
 
   cancel(){

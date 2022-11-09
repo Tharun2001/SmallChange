@@ -28,8 +28,14 @@ export class ViewPortfolioComponent implements OnInit {
     console.log(localStorage.getItem('clientId'));
   }
 
-  getAccountDetails(){
+  updateOverview(){
     console.log("emited")
+    this.getAccountDetails();
+    this.getSecurities();
+  }
+
+  getAccountDetails(){
+    
     this.accountService.getAccountDetails().subscribe({ next: (account) => {
       this.funds = account.funds;
       console.log(account);
@@ -41,6 +47,8 @@ export class ViewPortfolioComponent implements OnInit {
   getSecurities(){
     this.portfolioService.getSecurities().subscribe({ next: (holdings) => {
       this.data = holdings;
+      this.invested_amount = 0;
+      this.current_amount = 0;
       for (var i = 0; i < this.data.length; i++) {
         this.invested_amount += this.data[i].invested_amount;
         this.current_amount += (this.data[i].ltp * this.data[i].quantity)

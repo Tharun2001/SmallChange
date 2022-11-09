@@ -2,81 +2,81 @@
     <app-header-logo></app-header-logo>
     <app-navbar></app-navbar>
 
-    <div class="account-main">
-        <h2>Account</h2>
-        <hr>
-        <div class="account-container">
-            <div class="account-container-content">
-                <label for="name">Userame</label>
-                <p class="account-values">{{name}}</p>
+    <div class="main-container">
+        <div class="account-main">
+            <h2>Account</h2>
+            <hr>
+            <div class="account-container">
+                <div class="account-container-content">
+                    <label for="name">Userame</label>
+                    <p class="account-values">{{name}}</p>
+                </div>
+                <div class="account-container-content">
+                    <label for="clientId">CIENT ID</label>
+                    <p class="account-values">{{clientId}}</p>
+                </div>
             </div>
-            <div class="account-container-content">
-                <label for="clientId">CIENT ID</label>
-                <p class="account-values">{{clientId}}</p>
+        </div>
+        <div class="details-container">
+            <div class="detail-options-container">
+                <div class="detail-option" [ngClass]="{'active': selected == 'funds'}">
+                    <button [ngClass]="{'active': selected == '' || selected == 'funds'}" (click)="toggleOption('funds')">Funds</button>
+                </div>
+                <div class="detail-option bank-option" [ngClass]="{'active': selected == 'bank'}" >
+                    <button [ngClass]="{'active': selected == 'bank' }" (click)="toggleOption('bank')">Bank</button>
+                </div>
+            </div>
+            <hr>
+    
+            <div  class="detail-content">
+                <div *ngIf="selected == 'funds'" class="fund-details">
+                    <div>
+                        <h3>Available funds</h3> <p class="fund-value">{{ funds | currency}}</p>
+                    </div>
+                    <div>
+                    <form [formGroup]="FundForm" novalidate>
+                        <mat-form-field appearance="fill">
+                            <mat-select class="account-number-input" class="bank-acct-dropdown" placeholder="Account number" formControlName="accountNumber" [(value)]="selectedAccountNumber">
+                                <mat-option *ngFor="let bank_account of bank_accounts" [value]="bank_account.account_number">{{bank_account.account_number}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="amount-input" appearance="fill">
+                            <mat-label>Amount</mat-label>
+                            <input type="number" matInput [(ngModel)]="amount" formControlName="amount">
+                            <mat-error *ngIf="FundForm.controls['amount'].hasError('required')">Cannot be empty</mat-error>
+                        </mat-form-field>
+                        </form>
+                    </div>
+    
+                    <div class="fund-options">
+                        <button class="add-funds-btn" (click)="addFunds()">Add funds</button>
+                        <button class="withdraw-funds-btn" (click)="withdrawFunds()">Withdraw</button>
+                    </div>
+                </div>
+                
+                <div *ngIf="selected == 'bank' && bank_accounts != null && bank_accounts.length > 0" class="bank-details">
+                    <h3>Bank Accounts</h3>
+                    <table *ngIf="bank_accounts != null">
+                        <tr>
+                            <th>Bank name</th>
+                            <th>Account number</th>
+                            <th>Manage Account</th>
+                        </tr>
+                        <tr *ngFor="let account of bank_accounts">
+                            <td>{{account.bank_name}}</td>
+                            <td>{{account.account_number}}</td>
+                            <td>
+                                <button (click)="deleteBankAccount(account.account_number)" mat-flat-button color="warn">Delete</button>      
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <span *ngIf="selected == 'bank' && (bank_accounts == null || bank_accounts.length == 0)" style="font-weight: bold; font-size: 16px; margin: 10px 10px;">No bank accounts available.</span>
+                <button *ngIf="selected == 'bank'" class="btn-bank" (click)="addBankAccount()">Add bank account</button>
             </div>
         </div>
     </div>
-    <div class="details-container">
-        <div class="detail-options-container">
-            <div class="detail-option" [ngClass]="{'active': selected == 'funds'}">
-                <button [ngClass]="{'active': selected == '' || selected == 'funds'}" (click)="toggleOption('funds')">Funds</button>
-            </div>
-            <div class="detail-option" [ngClass]="{'active': selected == 'bank'}" >
-                <button [ngClass]="{'active': selected == 'bank' }" (click)="toggleOption('bank')">Bank</button>
-            </div>
-            <div class="detail-option" [ngClass]="{'active': selected == 'profile'}">
-                <button [ngClass]="{'active': selected == 'profile'}" (click)="toggleOption('profile')">Profile</button>
-            </div>
-        </div>
-        <hr>
 
-        <div  class="detail-content">
-            <div *ngIf="selected == 'funds'" class="fund-details">
-                <div>
-                    <h3>Available funds</h3> <p class="fund-value">{{ funds | currency}}</p>
-                </div>
-                <div>
-                <form [formGroup]="FundForm" novalidate>
-                    <mat-form-field appearance="fill">
-                        <mat-select class="account-number-input" class="bank-acct-dropdown" placeholder="Account number" formControlName="accountNumber" [(value)]="selectedAccountNumber">
-                            <mat-option *ngFor="let bank_account of bank_accounts" [value]="bank_account.account_number">{{bank_account.account_number}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field class="amount-input" appearance="fill">
-                        <mat-label>Amount</mat-label>
-                        <input type="number" matInput [(ngModel)]="amount" formControlName="amount">
-                        <mat-error *ngIf="FundForm.controls['amount'].hasError('required')">Cannot be empty</mat-error>
-                    </mat-form-field>
-                    </form>
-                </div>
-
-                <div class="fund-options">
-                    <button class="add-funds-btn" (click)="addFunds()">Add funds</button>
-                    <button class="withdraw-funds-btn" (click)="withdrawFunds()">Withdraw</button>
-                </div>
-            </div>
-            
-            <div *ngIf="bank_accounts != null && selected == 'bank'" class="bank-details">
-                <h3>Bank Accounts</h3>
-                <table>
-                    <tr>
-                        <th>Bank name</th>
-                        <th>Account number</th>
-                        <th>Manage Account</th>
-                    </tr>
-                    <tr *ngFor="let account of bank_accounts">
-                        <td>{{account.bank_name}}</td>
-                        <td>{{account.account_number}}</td>
-                        <td>
-                            <button (click)="deleteBankAccount(account.account_number)" mat-flat-button color="warn">Delete</button>      
-                        </td>
-                    </tr>
-                </table>
-                <button class="btn-bank" (click)="addBankAccount()">Add bank account</button>
-            </div>
-
-        </div>
-    </div>
     <hr/>
     <app-footer-bar></app-footer-bar>
 </div>

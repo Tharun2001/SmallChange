@@ -1,17 +1,17 @@
 <div class="bond-portfolio">
     <div class="bond-table">
-        <table datatable>
+        <table datatable *ngIf="data != null && data.length > 0">
             <colgroup>
-                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 20%;">
                 <col span="1" style="width: 7%;">
                 <col span="1" style="width: 15%;">
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 5%;">
                 <col span="1" style="width: 10%;">
                 <col span="1" style="width: 10%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 3%;">
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 30%;">
              </colgroup>
             <thead>
                 <tr>
@@ -35,14 +35,19 @@
                     <td>{{entry.quantity}}</td>
                     <td>{{entry.ltp | number: '1.2-2'}}</td>
                     <td>{{entry.invested_amount | number: '1.2-2'}}</td>
-                    <td class="bolder" [ngClass]="{'green':entry.ltp*entry.quantity>entry.invested_amount,'red':entry.ltp*entry.quantity<entry.invested_amount}">{{entry.ltp*entry.quantity | number: '1.2-2'}}</td>
-                    <td class="bolder" [ngClass]="{'green':entry.ltp*entry.quantity>entry.invested_amount,'red':entry.ltp*entry.quantity<entry.invested_amount}">{{(entry.ltp*entry.quantity-entry.invested_amount) | number: '1.2-2'}}</td>
-                    <td class="bolder" [ngClass]="{'green':entry.ltp*entry.quantity>entry.invested_amount,'red':entry.ltp*entry.quantity<entry.invested_amount}">{{(entry.ltp*entry.quantity-entry.invested_amount)/entry.invested_amount | percent: '1.2-2'}}</td>
+                    <td class="bolder" [ngClass]="{'green': RoundValue(entry.ltp*entry.quantity) > RoundValue(entry.invested_amount),'red': RoundValue(entry.ltp*entry.quantity) < RoundValue(entry.invested_amount)}">{{entry.ltp*entry.quantity | number: '1.2-2'}}</td>
+                    <td class="bolder" [ngClass]="{'green': RoundValue(entry.ltp*entry.quantity) > RoundValue(entry.invested_amount),'red': RoundValue(entry.ltp*entry.quantity) < RoundValue(entry.invested_amount)}">{{(entry.ltp*entry.quantity-entry.invested_amount) | number: '1.2-2'}}</td>
+                    <td class="bolder" [ngClass]="{'green': RoundValue(entry.ltp*entry.quantity) > RoundValue(entry.invested_amount),'red': RoundValue(entry.ltp*entry.quantity) < RoundValue(entry.invested_amount)}">{{(entry.ltp*entry.quantity-entry.invested_amount)/entry.invested_amount | percent: '1.2-2'}}</td>
                     <td><button (click)="openDialog(entry)" >Sell</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <div *ngIf="!data || data.length == 0" style="text-align: center; font-size: 24px;">
+        <span id="no-stocks-message" >
+            No bonds available
+        </span>
+      </div>
     <div class="overview">
         <span class="child">
             <h4>Total Investment:</h4>
@@ -54,7 +59,7 @@
         </span>
         <span class="child">
             <h4>Net Profit/Loss:</h4>
-            <h2 [ngClass]="{'green':current_amount>invested_amount,'red':current_amount<invested_amount}">$ {{current_amount-invested_amount| number:'1.2-2'}}
+            <h2 [ngClass]="{'green': RoundValue(current_amount) > RoundValue(invested_amount),'red': RoundValue(current_amount) < RoundValue(invested_amount)}">$ {{current_amount-invested_amount| number:'1.2-2'}}
                 ({{((current_amount-invested_amount)/invested_amount)|percent:'1.2-2'}})
             </h2>
         </span>

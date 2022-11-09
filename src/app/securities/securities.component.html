@@ -1,40 +1,63 @@
 <app-header-logo></app-header-logo>
 <app-navbar></app-navbar>
-<div class="example-container mat-elevation-z8" >
-    <mat-table [dataSource]="dataSource" matSort>
-        
-        <ng-container matColumnDef="code">
-          <mat-header-cell *matHeaderCellDef > Code </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.scode}} </mat-cell>
-        </ng-container>
-    
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.sname}} </mat-cell>
-        </ng-container>
-    
-        <ng-container matColumnDef="asset_class">
-            <mat-header-cell *matHeaderCellDef> Asset Class </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.assetClass}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ltp">
-          <mat-header-cell *matHeaderCellDef > LTP </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.ltp}} </mat-cell>
-        </ng-container>    
-        
-        <ng-container matColumnDef="trade">
-            <mat-header-cell *matHeaderCellDef > Trade </mat-header-cell>
-            <mat-cell *matCellDef="let row"> 
-                <button mat-flat-button color="primary"  (click)="openDialog(row)">Buy</button>
-            </mat-cell>
-          </ng-container>  
-    
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<div class="main-container">
+  <div class="asset-class-filter">
+    <div class="asset-class-options">
+        <mat-form-field appearance="fill">
+          <mat-select #matAssetClass class="asset-class-dropdown" placeholder="Asset class" [formControl]="assetClassForm" [(value)]="selectedAssetClasses" multiple>
+            <div (mouseleave)="matAssetClass.close()">
+              <mat-option *ngFor="let assetClass of assetClassList" [value]="assetClass">{{assetClass}}</mat-option>
+            </div>
+            
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="filter-buttons-container">
+        <button mat-flat-button color="primary" (click)="filterSubmit()">Submit</button>
+        <button mat-flat-button color="warn" (click)="filterClear()">Clear</button>
+    </div>
+      <!-- <p>
+        {{selectedAssetClasses | json}}
+      </p> -->
+  </div>
+  <div class="example-container mat-elevation-z8" >
+      <mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef > Code </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.scode}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.sname}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="asset_class">
+              <mat-header-cell *matHeaderCellDef> Asset Class </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.assetClass}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="ltp">
+            <mat-header-cell *matHeaderCellDef > LTP </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ltp}} </mat-cell>
+          </ng-container>    
+          
+          <ng-container matColumnDef="trade">
+              <mat-header-cell *matHeaderCellDef > Trade </mat-header-cell>
+              <mat-cell *matCellDef="let row"> 
+                  <button style="background-color: rgb(61, 173, 61);" mat-flat-button color="primary"  (click)="openDialog(row)">Buy</button>
+              </mat-cell>
+            </ng-container>  
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  <div *ngIf="this.securities == null || this.securities.length == 0" class="empty">
+      No securities found.
+  </div>
 </div>
 <hr />
 <app-footer-bar></app-footer-bar>

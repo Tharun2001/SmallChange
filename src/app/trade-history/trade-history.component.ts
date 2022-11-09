@@ -37,6 +37,8 @@ export class TradeHistoryComponent implements OnInit {
 
   sideOption!: any;
 
+  empty: boolean = false;
+
   error = "";
   filter = '';
   stAmount!: number;
@@ -58,6 +60,9 @@ export class TradeHistoryComponent implements OnInit {
         else{
           this.fullTrades[i].trade_type = 'Sell';
         }
+      }
+      if(this.fullTrades == null || this.fullTrades.length == 0){
+        this.empty = true;
       }
       this.dataSource = new MatTableDataSource(this.fullTrades);
       this.dataSource.paginator = this.paginator;
@@ -95,6 +100,7 @@ export class TradeHistoryComponent implements OnInit {
   }
   
   filterSubmit(){
+    this.empty = false;
     this.trades = this.fullTrades;
 
     let start_date = this.dateRange.get('start')?.value;
@@ -106,7 +112,7 @@ export class TradeHistoryComponent implements OnInit {
 
     // console.log("date", start_date, end_date);
     // console.log("amount", start_amount, end_amount);
-    if(this.selectedAssetClasses != null){
+    if(this.selectedAssetClasses != null && this.selectedAssetClasses.length > 0){
       console.log("class filtering.....")
       this.trades = this.trades.filter((trade) => { return this.selectedAssetClasses.includes(trade.asset_class)})
     }
@@ -136,13 +142,16 @@ export class TradeHistoryComponent implements OnInit {
           return new Date(trade.date) >= start_date && new Date(trade.date) <= end_date;
       });
     }
-    
+    if(this.trades == null || this.trades.length == 0){
+      this.empty = true;
+    }
     console.log("trades", this.trades);
     this.dataSource = new MatTableDataSource(this.trades);
     this.dataSource.paginator = this.paginator;
   }
 
   filterClear(){
+    this.empty = false;
     this.selectedAssetClasses = null;
     this.selectedSide = null;
     this.dateRange.reset();

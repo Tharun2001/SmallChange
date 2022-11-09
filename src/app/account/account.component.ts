@@ -35,7 +35,7 @@ export class AccountComponent implements OnInit {
 
     this.FundForm = this.formBuilder.group({
       accountNumber: ['', [Validators.required]],
-      amount: ['', [Validators.required, Validators.pattern("^[0-9]*.?[0-9]+$")]],
+      amount: ['', [Validators.required, Validators.min(0)]],
     })
     this.getAccountDetails();
     this.getBankAccounts();
@@ -95,7 +95,9 @@ export class AccountComponent implements OnInit {
       return false;
     }
 
-    if(this.FundForm.get('amount')?.value == null){
+    console.log(this.FundForm.get('amount')?.value > 0)
+    if(this.FundForm.get('amount')?.value == null || this.FundForm.get('amount')?.value < 0){
+      console.log("negative...")
       return false;
     }
 
