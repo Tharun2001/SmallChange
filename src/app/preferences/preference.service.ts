@@ -14,7 +14,7 @@ export class PreferenceService {
   getPreference(): Observable<{username: String, purpose: String, risk: number, incomeCategory: String, lengthOfInvestment: String}>{
     return this.httpClient.post<{username: String, purpose: String, risk: number, incomeCategory: String, lengthOfInvestment: String}>(this.url + 'preference',
       {
-        'username': 'Aryan'
+        'username': `${localStorage.getItem('username')}`
       },
       {headers : new HttpHeaders({"Content-Type": "application/json"})})
     .pipe(catchError(this.handleError));

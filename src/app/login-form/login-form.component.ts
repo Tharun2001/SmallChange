@@ -67,13 +67,12 @@ export class LoginFormComponent implements OnInit {
                 console.log(res);
                 console.log("from login", localStorage.getItem('username'));
                 this.accountService.getAccountDetails().subscribe({
-                  next: (res)=>{ 
+                  next: (res)=>{
                     console.log('getting account....', res);
-                    localStorage.setItem('clientId', res.clientId); 
+                    localStorage.setItem('clientId', res.clientId);
                     this.router.navigateByUrl('/portfolio');
-                    
                 }})
-               
+
               }
               else {
                 this.invalidCreds = true;
