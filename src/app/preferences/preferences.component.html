@@ -29,7 +29,7 @@
         </div>
         <div id="preferencesButton">
           <div class="preferencesForm" style="padding-bottom: 1rem;">
-            <button type="button" id="editPreferencesBtn1" (click)="enableEditing()">Edit</button>
+            <button type="button" id="editPreferencesBtn1" (click)="enableEditing()" [disabled]="!disableButton">Edit</button>
           </div>
 
           <div class="preferencesForm">
