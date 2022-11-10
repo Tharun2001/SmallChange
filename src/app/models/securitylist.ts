@@ -3,5 +3,5 @@ export interface SecurityList{
     sname:string;
     scode:string;
     ltp:number;
-    assetClass: number;
+    assetClass: string;
 }

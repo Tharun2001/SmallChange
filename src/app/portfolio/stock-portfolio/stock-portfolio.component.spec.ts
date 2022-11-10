@@ -30,10 +30,20 @@ describe('StockPortfolioComponent', () => {
 
   it('should display table', () => {
     const compiled = fixture.debugElement.nativeElement;
-    component.data = [{sid: 1, code: 'ABC', name: 'Stock', 'asset_class': "Main Index",
-  'ltp': 100, 'quantity': 10, 'invested_amount': 1000}];
+    component.data = data;
     fixture.detectChanges();
     const table = compiled.querySelector("table");
     expect(table).toBeTruthy();
   });
+
+  it('should display prompt when no stocks in holding', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    component.data = data;
+    
+    
+    fixture.detectChanges();
+    const table = compiled.querySelector("table");
+    expect(table).toBeTruthy();
+  });
+
 });

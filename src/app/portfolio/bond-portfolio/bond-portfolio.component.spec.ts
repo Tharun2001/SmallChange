@@ -29,6 +29,7 @@ describe('BondPortfolioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   it('should display table', () => {
     const compiled = fixture.debugElement.nativeElement;
     component.data = data;
@@ -36,4 +37,14 @@ describe('BondPortfolioComponent', () => {
     const table = compiled.querySelector("table");
     expect(table).toBeTruthy();
   });
+
+
+  it('should display prompt when no bonds in holding', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    component.data = data;
+    fixture.detectChanges();
+    const table = compiled.querySelector("table");
+    expect(table).toBeTruthy();
+  });
+
 });

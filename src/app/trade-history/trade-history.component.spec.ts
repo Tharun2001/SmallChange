@@ -1,18 +1,51 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgControl, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TradeStock } from '../models/trade-stock';
 import { TradeHistoryComponent } from './trade-history.component';
 
 
 describe('TradeHistoryComponent', () => {
   let component: TradeHistoryComponent;
   let fixture: ComponentFixture<TradeHistoryComponent>;
+  const trades: TradeStock[] = [{name: "ABC" , code: "ABC", price: 100, asset_class: "Main Index", 
+  quantity: 10, trade_type: "B", date: "2022-11-10T09:33:15"}, 
+  {name: "XYC" , code: "XYC", price: 200, asset_class: "Government bonds", 
+  quantity: 10, trade_type: "S", date: "2022-12-10T09:33:15"}]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ TradeHistoryComponent ],
-      imports: [FormsModule],
+      imports: [FormsModule, HttpClientTestingModule, 
+        NoopAnimationsModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
@@ -24,90 +57,146 @@ describe('TradeHistoryComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-  // it('should retrieve trade records when all trades is selected', ()=> {
-  //   component.getTradeHistory('');
-  //   expect(component.trades.length).toBeGreaterThan(0);
-  // })
+  it('should display prompt when no transactions available', () => {
+    component.fullTrades = trades;
+    component.selectedAssetClasses = ["Government bonds"];
+    component.assetClassList = []
+    
+    
+    
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
 
-  // it('should display only main index asset trades', ()=> {
-  //   let beforeData = component.trades;
-  //   component.getTradeHistory('asset_class');
-  //   component.onAssetOptionSelection('Main index stocks');
-  //   expect(component.trades.length).toBe(7);
-  // })
+  it('should not display based on asset classes when asset filter not chosen', () => {
+    component.fullTrades = trades;
+    component.selectedAssetClasses = ["Government bonds"];
+    component.assetClassList = []
+    
+    
+    
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
 
-  // it('should display only small cap trades', ()=> {
-  //   component.getTradeHistory('asset_class');
-  //   component.onAssetOptionSelection('Small cap company stocks');
-  //   expect(component.trades.length).toBe(7);
-  // })
+  it('should display based on asset classes - Bonds', () => {
+    component.fullTrades = trades;
+    component.selectedAssetClasses = ["Government bonds"];
+    component.assetClassList = []
+    
+    
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
 
-  // it('should display only International market stocks', ()=> {
-  //   component.getTradeHistory('asset_class');
-  //   component.onAssetOptionSelection('International market stocks');
-  //   expect(component.trades.length).toBe(2);
-  // })
+
+  it('should display based on asset classes - Stocks', () => {
+    component.fullTrades = trades;
+    component.selectedAssetClasses = ["Main Index"];
+    component.assetClassList = []
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+
+  it('should not display based on side when side filter not chosen', () => {
+    component.fullTrades = trades;
+    component.selectedAssetClasses = ["Government bonds"];
+    component.assetClassList = []
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+
+  it('should display based on side filter - Buy', () => {
+    component.fullTrades = trades;
+    component.selectedSide = "B";
+
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+
+  it('should display based on side filter - Sell', () => {
+    component.fullTrades = trades;
+    component.selectedSide = "S";
+
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+
+
+  it('should not display based on side filter when side not chosen', () => {
+    component.fullTrades = trades;
+    component.selectedSide = "S";
+
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+
+  it('should display based on date filter', () => {
+    component.fullTrades = trades;
+    component.selectedSide = "S";
+
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+
+
   
-  // it('should display only SELL trades', ()=> {
-  //   let beforeData = component.trades;
-  //   component.getTradeHistory('side');
-  //   component.onAssetOptionSelection('sell')
-  //   expect(component.trades.length).toBeLessThan(beforeData.length);
-  // })
+  it('should not display based on date filter when not chosen', () => {
+    component.fullTrades = trades;
+    component.selectedSide = "S";
 
-  // it('should display only BUY trades', ()=> {
-  //   let beforeData = component.trades;
-  //   component.getTradeHistory('side');
-  //   component.onAssetOptionSelection('buy')
-  //   expect(component.trades.length).toBeLessThan(beforeData.length);
-  // })
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
 
-  // it('should display error when date is invalid', ()=> {
-  //   let form: NgForm = new NgForm([], []);
-  //   component.getTradeHistory('date');
-  //   component.endDate = '';
-  //   component.stDate = '';
-  //   component.dateSubmit(form);
-  //   fixture.detectChanges();
-  //   const error = fixture.debugElement.query(By.css('div.error'));
-  //   expect(error).toBeTruthy();
-  // })
+  it('should display based on amount filter', () => {
+    component.fullTrades = trades;
+    component.stAmount = 1500;
+    component.endAmount = 2000;
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
 
-  // it('should display trades between specified date when dates are valid', ()=> {
-  //   let form: NgForm = new NgForm([], []);
-  //   component.getTradeHistory('amount');
-  //   component.endDate = '10/08/2022';
-  //   component.stDate = '10/06/2022';
-  //   component.dateSubmit(form);
-  //   fixture.detectChanges();
-  //   const error = fixture.debugElement.query(By.css('div.error'));
-  //   expect(error).toBeFalsy();
-  // })
+  it('should not display based on amount filter when not chosen', () => {
+    component.fullTrades = trades;
+    component.selectedSide = "S";
 
-  // it('should display error when amount is invalid', ()=> {
-  //   let form: NgForm = new NgForm([], []);
-  //   component.getTradeHistory('amount');
-  //   component.endAmount = '';
-  //   component.stAmount = '';
-  //   component.amountSubmit();
-  //   fixture.detectChanges();
-  //   const error = fixture.debugElement.query(By.css('div.error'));
-  //   expect(error).toBeTruthy();
-  // })
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(1);
+  });
+  
+  it('should not apply filter when invalid amount  range in valid display', () => {
+    component.fullTrades = trades;
+    component.stAmount = 3000;
+    component.endAmount = 2000;
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(2);
+  });
 
-  // it('should display trades between specified amount when amounts are valid', ()=> {
-  //   let form: NgForm = new NgForm([], []);
-  //   component.getTradeHistory('amount');
-  //   component.endAmount = '100';
-  //   component.stAmount = '0';
-  //   component.amountSubmit();
-  //   fixture.detectChanges();
-  //   const error = fixture.debugElement.query(By.css('div.error'));
-  //   expect(error).toBeFalsy();
-  // })
+  it('should apply all filters', () => {
+    component.fullTrades = trades;
+    component.stAmount = 3000;
+    component.endAmount = 2000;
+    fixture.detectChanges();
+    component.filterSubmit();
+    expect(component.trades.length).toBe(2);
+  });
 
 });
