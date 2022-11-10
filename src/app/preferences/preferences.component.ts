@@ -79,6 +79,8 @@ export class PreferencesComponent implements OnInit {
       console.log("RESULT = " + res);
       if(res != null) {
         this.submitted = true;
+        this.disableButton = true;
+        this.preferencesForm.disable();
       }
     }, error: () => {
 
