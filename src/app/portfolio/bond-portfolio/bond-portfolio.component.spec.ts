@@ -9,6 +9,8 @@ import { BondPortfolioComponent } from './bond-portfolio.component';
 describe('BondPortfolioComponent', () => {
   let component: BondPortfolioComponent;
   let fixture: ComponentFixture<BondPortfolioComponent>;
+  const data = [{sid: 1, code: 'ABC', name: 'Stock', 'asset_class': "Government bonds",
+  'ltp': 100, 'quantity': 10, 'invested_amount': 1000}];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -29,6 +31,8 @@ describe('BondPortfolioComponent', () => {
   });
   it('should display table', () => {
     const compiled = fixture.debugElement.nativeElement;
+    component.data = data;
+    fixture.detectChanges();
     const table = compiled.querySelector("table");
     expect(table).toBeTruthy();
   });

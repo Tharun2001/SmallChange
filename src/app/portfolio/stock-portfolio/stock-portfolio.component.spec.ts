@@ -8,6 +8,8 @@ describe('StockPortfolioComponent', () => {
   let component: StockPortfolioComponent;
   let fixture: ComponentFixture<StockPortfolioComponent>;
 
+  const data = [{sid: 1, code: 'ABC', name: 'Stock', 'asset_class': "Main Index",
+  'ltp': 100, 'quantity': 10, 'invested_amount': 1000}];
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatDialogModule, MatSnackBarModule, HttpClientTestingModule],
@@ -28,6 +30,9 @@ describe('StockPortfolioComponent', () => {
 
   it('should display table', () => {
     const compiled = fixture.debugElement.nativeElement;
+    component.data = [{sid: 1, code: 'ABC', name: 'Stock', 'asset_class': "Main Index",
+  'ltp': 100, 'quantity': 10, 'invested_amount': 1000}];
+    fixture.detectChanges();
     const table = compiled.querySelector("table");
     expect(table).toBeTruthy();
   });

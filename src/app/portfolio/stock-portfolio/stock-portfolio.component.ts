@@ -15,6 +15,7 @@ export class StockPortfolioComponent implements OnInit {
   @Input() eventTriggered!: boolean;
   @Output("updateOverview") updateOverview: EventEmitter<any> = new EventEmitter();
   
+  intervalId!: number;
   data!: SecurityHolding[];
   invested_amount: number = 0;
   current_amount: number = 0;
@@ -33,7 +34,10 @@ export class StockPortfolioComponent implements OnInit {
     this.current_amount = 0;
     this.getStock();
     console.log(this.data);
+  }
 
+  changePrice(){
+    console.log(Math.random());
   }
 
   getStock(){
@@ -74,6 +78,8 @@ export class StockPortfolioComponent implements OnInit {
   public RoundValue(value: number): number {
     return Math.round(value*100)/100;
  }
+
+
 }
 
 

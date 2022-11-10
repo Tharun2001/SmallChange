@@ -50,6 +50,7 @@ export class TradeHistoryComponent implements OnInit {
   constructor(private tradeService: TradeService) {}
 
   ngOnInit(): void {
+    this.empty = false;
     this.tradeService.getTrades().subscribe((trades) => {
       console.log('trades', trades)
       this.fullTrades = trades;
@@ -67,7 +68,7 @@ export class TradeHistoryComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.fullTrades);
       this.dataSource.paginator = this.paginator;
     }, (e) => {
-
+        this.empty = true;
     });
     
   }
