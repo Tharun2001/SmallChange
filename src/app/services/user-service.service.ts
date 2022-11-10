@@ -21,10 +21,13 @@ export class UserServiceService {
 
   return this.http.post<User>(this.url + "login", body)
             .pipe(map(user => {
+              if(user != null) {
                 this.loggedInUser = user;
-                console.log("service", user); 
+                console.log("service", user);
                 localStorage.setItem('username', user.username);
                 console.log("Local storage", localStorage.getItem('username'));
+                return user;
+              }
                 return user;
             }));
   }

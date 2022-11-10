@@ -72,7 +72,6 @@ export class LoginFormComponent implements OnInit {
                     localStorage.setItem('clientId', res.clientId);
                     this.router.navigateByUrl('/portfolio');
                 }})
-
               }
               else {
                 this.invalidCreds = true;
