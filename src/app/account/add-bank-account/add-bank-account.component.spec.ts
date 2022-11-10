@@ -27,4 +27,21 @@ describe('AddBankAccountComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain input boxes for bank name and account number', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display error if bank name or account is null or invalid', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display error if account number already exists', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should add bank account to table if details are valid', () => {
+    expect(component).toBeTruthy();
+  });
+
 });

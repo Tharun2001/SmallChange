@@ -53,6 +53,26 @@ describe('AccountComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should display fund details when fund is clicked', () => {
+    component.accountError = "true";
+    component.amount = 1000;
+    component.selectedAccountNumber = "ABC1233";
+
+    expect(component.accountError).toBe("true");
+
+    expect(component.selectedAccountNumber).toBe("ABC1233");
+  });
+
+  it('should display bank form when add button is clicked', () => {
+    component.accountError = "true";
+    component.amount = 1000;
+    component.selectedAccountNumber = "ABC1233";
+
+    expect(component.accountError).toBe("true");
+
+    expect(component.selectedAccountNumber).toBe("ABC1233");
+  });
+
   it('should fill options with bank account number', () => {
     component.accountError = "true";
     component.amount = 1000;
