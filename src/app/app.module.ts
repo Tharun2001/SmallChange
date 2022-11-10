@@ -81,6 +81,9 @@ import { PreferencesComponent } from './preferences/preferences.component';
     MatButtonModule,
     MatIconModule
   ],
+  exports: [
+    AppComponent
+  ],
   providers: [HttpClient,
     ],
   bootstrap: [AppComponent]
